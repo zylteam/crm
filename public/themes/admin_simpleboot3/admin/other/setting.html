@@ -1,0 +1,309 @@
+<include file="public@header_vue"/>
+<style>
+    .el-pagination {
+        margin-top: 20px;
+    }
+
+    .avatar {
+        width: 40px;
+        height: auto;
+    }
+
+    .avatar-uploader .el-upload {
+        border: 1px dashed #d9d9d9;
+        border-radius: 6px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .avatar-uploader .el-upload:hover {
+        border-color: #409EFF;
+    }
+
+    .avatar-uploader-icon {
+        font-size: 28px;
+        color: #8c939d;
+        width: 178px;
+        height: 178px;
+        line-height: 178px;
+        text-align: center;
+    }
+
+    .avatar {
+        width: 178px;
+        height: 178px;
+        display: block;
+    }
+
+    .avatar-uploader .el-upload {
+        border: 1px dashed #d9d9d9;
+        border-radius: 6px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .avatar-uploader .el-upload:hover {
+        border-color: #409EFF;
+    }
+</style>
+</head>
+<body>
+<div id="app">
+    <el-tabs type="border-card">
+        <el-tab-pane label="其他设置" v-loading="onDataLoading">
+            <el-row>
+                <el-form :model="sourceFrom" class="demo-form-inline" :rules="rules" ref="sourceFrom"
+                         label-width="200px">
+                    <el-form-item label="自动释放时间" prop="time">
+                        <el-col :span="18">
+                            <el-input v-model="sourceFrom.time" placeholder="自动释放时间"></el-input>
+                        </el-col>
+                    </el-form-item>
+                    <el-form-item label="邀请注册文字" prop="message">
+                        <el-col :span="18">
+                            <el-input type="textarea" v-model="sourceFrom.message" placeholder="邀请注册文字"></el-input>
+                        </el-col>
+                    </el-form-item>
+                </el-form>
+                <el-button v-if="sourceFrom.id === ''" type="primary" @click="submit('sourceFrom')">新增</el-button>
+                <el-button v-else type="primary" @click="submit('sourceFrom')">修改</el-button>
+            </el-row>
+        </el-tab-pane>
+    </el-tabs>
+</div>
+</body>
+<script>
+    let id = 1000;
+    var app = new Vue({
+        el: '#app',
+        data: function () {
+
+            var checkPhone = (rule, value, callback) => {
+                if (!value) {
+                    return callback(new Error('手机号不能为空'));
+                } else {
+                    const reg = /^1[3|4|5|7|8][0-9]\d{8}$/
+                    if (reg.test(value)) {
+                        callback();
+                    } else {
+                        return callback(new Error('请输入正确的手机号'));
+                    }
+                }
+            };
+            let self = this;
+            return {
+                tableData: [],
+                form: {
+                    keyword: '',
+                },
+                sourceFrom: {
+                    id: '',
+                    name: '',
+                    tag_list: [],
+                },
+                dialogVisible: false,
+                dialogLoading: true,
+                totalNum: 0,
+                currentPage: 1,
+                parent_info: [],
+                show_name: {
+                    label: 'name'
+                },
+                onDataLoading: false,
+                headers: {'X-Requested-With': 'XMLHttpRequest'},
+                rules: {
+                    name: [{required: true, message: '请输入客户来源名称', trigger: 'blur'}],
+                },
+            };
+
+        },
+        created() {
+            this.getData()
+        },
+        methods: {
+            clearForm() {
+                this.form = {
+                    name: '',
+                }
+            },
+            update(data) {
+                let _this = this;
+                console.log(data)
+                if (data) {
+                    _this.sourceFrom = JSON.parse(JSON.stringify(data));
+                } else {
+                    _this.sourceFrom = {
+                        id: '',
+                        name: '',
+                        tag_list: [],
+                    }
+                }
+                _this.dialogVisible = true;
+                _this.dialogLoading = false;
+            },
+            submit(form) {
+                let _this = this;
+                _this.$refs[form].validate((valid) => {
+                    if (valid) {
+                        axios.post("{:url('admin/other/update_setting')}", this.sourceFrom, {
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest',
+                            }
+                        }).then(function (response) {
+                            _this.dialogLoading = false;
+                            if (response.data.code === 1) {
+                                if (_this.sourceFrom.id === '') {
+                                    _this.$message.success('新增完成');
+                                } else {
+                                    _this.$message.success('修改成功');
+                                }
+                                _this.getData();
+                                _this.dialogVisible = false;
+                            } else {
+                                _this.$message.warning(response.data.msg);
+                            }
+                        }).catch(function (error) {
+                            _this.dialogLoading = false;
+                            _this.$message.error(error.toString())
+                        })
+                    } else {
+                        _this.dialogLoading = false;
+                        return false;
+                    }
+                });
+            },
+            remove(node, data) {
+                let _this = this;
+                const parent = node.parent;
+                const children = parent.data.children || parent.data;
+                const index = children.findIndex(d => d.id === data.id);
+                console.log(children[index].children)
+                if (children[index].children == undefined || children[index].children.length == 0) {
+                    children.splice(index, 1);
+                } else {
+                    _this.$message.error('该角色下还有未删除的角色');
+                }
+            },
+
+            //首页获取列表数据
+            getData(page = 1) {
+                let _this = this;
+                let params = {page: page};
+                this.onDataLoading = true;
+                if (this.form.keyword !== '') {
+                    params.keyword = this.form.keyword;
+                }
+                console.log(params);
+                axios.get("{:url('admin/other/setting')}", {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                    params: params
+                }).then(function (response) {
+                    console.log(response.data.data);
+                    _this.onDataLoading = false;
+                    if (response.data.code === 1) {
+                        _this.sourceFrom = response.data.data.content;
+                        _this.sourceFrom.id = response.data.data.id;
+                        _this.sourceFrom.company_id = response.data.data.company_id;
+                    } else {
+                        _this.$message({
+                            message: response.data.msg,
+                            type: 'warning'
+                        });
+                    }
+                }).catch(function (error) {
+                    _this.onDataLoading = false;
+                    _this.$message.error(error.toString())
+                })
+            },
+
+            change_status(field, value, id) {
+                let _this = this;
+                this.dialogLoading = true;
+                params = {field: field, value: value, id: id};
+                axios.post("{:url('admin/customer_status/change_status')}", params, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    }
+                }).then(function (response) {
+                    _this.dialogLoading = false;
+                    if (response.data.code === 1) {
+                        _this.$message.success('修改完成');
+                        _this.getData(_this.currentPage);
+                    } else {
+                        _this.$message.warning(response.data.msg);
+                    }
+                })
+            },
+            add_tag() {
+                this.sourceFrom.tag_list.push({
+                    value: '',
+                    key: Date.now()
+                });
+            },
+            remove_tag(item) {
+                let index = this.sourceFrom.tag_list.indexOf(item)
+                let _this = this;
+                if (index !== -1) {
+                    if (item['id']) {
+                        _this.dialogLoading = true;
+                        let params = {id: item['id']};
+                        axios.post('/admin/customer_status/delete_tag', params, {
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest',
+                            }
+                        }).then(function (response) {
+                            _this.dialogLoading = false;
+                            if (response.data.code === 1) {
+                                _this.$message.success('删除完成');
+                                _this.getData(_this.currentPage);
+                            } else {
+                                _this.$message.warning(response.data.msg);
+                            }
+                        }).catch(function (error) {
+                            _this.dialogLoading = false;
+                            _this.$message.error(error.toString())
+                        })
+                    }
+                    this.sourceFrom.tag_list.splice(index, 1)
+                }
+            },
+            delete_status(id) {
+                let _this = this;
+                _this.dialogLoading = true;
+                if (id) {
+                    params = {id: id};
+                    axios.post('/admin/customer_status/delete', params, {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                        }
+                    }).then(function (response) {
+                        _this.dialogLoading = false;
+                        if (response.data.code === 1) {
+                            _this.$message.success('删除完成');
+                            _this.getData(_this.currentPage);
+                        } else {
+                            _this.$message.warning(response.data.msg);
+                        }
+                    }).catch(function (error) {
+                        _this.dialogLoading = false;
+                        _this.$message.error(error.toString())
+                    })
+                }
+            },
+            formatDate(timestamp) {
+                let date = new Date(timestamp * 1000);
+                return date.getFullYear() + '-' + this.prefix(date.getMonth() + 1) + '-' + this.prefix(date.getDate()) + ' ' + this.prefix(date.getHours()) + ':' + this.prefix(date.getMinutes()) + ':' + this.prefix(date.getSeconds());
+            },
+            prefix(num) {
+                if (num < 10) {
+                    return '0' + num;
+                }
+                return num;
+            }
+        }
+    });
+</script>

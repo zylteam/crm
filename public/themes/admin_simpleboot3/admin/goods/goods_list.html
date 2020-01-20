@@ -1,0 +1,623 @@
+<include file="public@header_vue"/>
+<script src="https://cdn.jsdelivr.net/npm/vue-ueditor-wrap@latest/lib/vue-ueditor-wrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__STATIC__/UEditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__STATIC__/UEditor/ueditor.all.min.js"></script>
+</head>
+<style>
+    .el-pagination {
+        margin-top: 20px;
+    }
+
+
+    .avatar-uploader .el-upload {
+        border: 1px dashed #d9d9d9;
+        border-radius: 6px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .avatar-uploader .el-upload:hover {
+        border-color: #409EFF;
+    }
+
+    .avatar-uploader-icon {
+        font-size: 28px;
+        color: #8c939d;
+        width: 178px;
+        height: 178px;
+        line-height: 178px;
+        text-align: center;
+    }
+
+    .avatar {
+        width: 178px;
+        height: 178px;
+        display: block;
+    }
+
+    .avatar-uploader .el-upload {
+        border: 1px dashed #d9d9d9;
+        border-radius: 6px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .avatar-uploader .el-upload:hover {
+        border-color: #409EFF;
+    }
+
+    .photos {
+        width: 120px;
+        height: 120px;
+        border-radius: 6px;
+        overflow: hidden;
+        float: left;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        position: relative;
+    }
+
+    .photos-options {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 120px;
+        line-height: 120px;
+        width: 120px;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 10;
+        opacity: 0;
+        transition: opacity 0.6s;
+    }
+
+    .photos:hover .photos-options {
+        opacity: 1;
+    }
+
+    .photos-options .el-button {
+        font-size: 24px;
+        color: white
+    }
+
+    .photos img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .photos-uploader {
+        width: 120px;
+        height: 120px;
+        float: left;
+    }
+
+    .logo-uploader .el-upload {
+        border: 1px dashed #d9d9d9;
+        border-radius: 6px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .logo-uploader .el-upload:hover {
+        border-color: #409EFF;
+    }
+
+    .logo-uploader-icon {
+        font-size: 28px;
+        color: #8c939d;
+        width: 120px;
+        height: 120px;
+        line-height: 120px;
+        text-align: center;
+    }
+</style>
+<body>
+<div id="app" style="height: 800px;">
+    <el-tabs type="border-card">
+        <el-tab-pane label="商品管理" v-loading="onDataLoading">
+            <el-row>
+                <el-col :span="24">
+                    <el-form :inline="true" :model="form" size="mini">
+                        <el-form-item label="日期:">
+                            <el-date-picker v-model="form.duration" type="daterange" value-format="yyyy-MM-dd"
+                                            :picker-options="durationOptions" range-separator="至"
+                                            start-placeholder="开始日期" end-placeholder="结束日期" clearable></el-date-picker>
+                        </el-form-item>
+                        <el-form-item v-if="{$role_id} != 3" label="公司：">
+                            <el-select v-model="form.company_id" placeholder="选择公司">
+                                <el-option
+                                        v-for="item in companyData"
+                                        :key="item.id"
+                                        :label="item.name"
+                                        :value="item.id">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="primary" @click="getData()">查询</el-button>
+                            <el-button type="danger" @click="clearForm()">清空</el-button>
+                            <el-button type="primary" @click="update(null)">新增商品</el-button>
+                        </el-form-item>
+                    </el-form>
+                </el-col>
+            </el-row>
+            <el-table :data="tableData" style="width: 100%">
+                <el-table-column prop="id" label="ID" width="80"></el-table-column>
+                <el-table-column prop="sort" label="排序" width="80">
+                    <template slot-scope="scope">
+                        <el-input v-model="scope.row.sort"
+                                  @change="change_status('sort',scope.row.sort,scope.row.id)"></el-input>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="goods_name" label="商品标题"></el-table-column>
+                <el-table-column prop="cover_img" label="商品图片">
+                    <template slot-scope="scope">
+                        <img :src="scope.row.goods_img[0]" alt="" style="width: 100px;">
+                    </template>
+                </el-table-column>
+                <el-table-column prop="price" label="价格"></el-table-column>
+                <el-table-column prop="stock" label="库存"></el-table-column>
+                <el-table-column prop="gift_points" label="赠送积分"></el-table-column>
+                <el-table-column prop="is_points" label="是否支持积分">
+                    <template slot-scope="scope">
+                        <el-switch
+                                v-model="scope.row.is_points"
+                                active-color="#13ce66"
+                                :active-value="1"
+                                :inactive-value="0"
+                                @change="change_status('is_points',scope.row.is_points,scope.row.id)"
+                                inactive-color="#ff4949">
+                        </el-switch>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="points" label="可使用积分">
+                    <template slot-scope="scope">
+                        {{ scope.row.is_points == 1 ? scope.row.points : '' }}
+                    </template>
+                </el-table-column>
+                <el-table-column prop="is_on_sale" label="是否上架">
+                    <template slot-scope="scope">
+                        <el-switch
+                                v-model="scope.row.is_on_sale"
+                                active-color="#13ce66"
+                                :active-value="1"
+                                :inactive-value="0"
+                                @change="change_status('is_on_sale',scope.row.is_on_sale,scope.row.id)"
+                                inactive-color="#ff4949">
+                        </el-switch>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="create_time" label="添加时间" min-width="120">
+                    <template slot-scope="scope">
+                        {{formatDate(scope.row.create_time)}}
+                    </template>
+                </el-table-column>
+                <el-table-column label="操作" fixed="right" width="180">
+                    <template slot-scope="scope">
+                        <el-button size="mini" type="text" @click="update(scope.row)">编辑</el-button>
+                        <el-button size="mini" type="text" @click="delete_activity(scope.row.id)">删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+            <el-pagination background layout="total,prev, pager, next" :total="totalNum" :page-size="10"
+                           :current-page.sync="currentPage" @current-change="getData"></el-pagination>
+        </el-tab-pane>
+        <el-dialog :title="goodsForm.id == '' ? '新增商品信息' : '修改商品信息'" :visible.sync="dialogVisible" width="80%"
+                   v-loading.fullscreen="dialogLoading">
+            <el-form :model="goodsForm" class="demo-form-inline" :rules="rules" ref="goodsForm"
+                     label-width="200px">
+                <el-form-item label="商品标题" prop="goods_name">
+                    <el-col :span="18">
+                        <el-input v-model="goodsForm.goods_name" placeholder="商品标题"></el-input>
+                    </el-col>
+                </el-form-item>
+                <el-form-item label="商品图片" prop="goods_img">
+                    <el-col :span="24">
+                        <div v-for="photo in goodsForm.goods_img" class="photos">
+                            <img :src="photo"/>
+                            <div class="photos-options">
+                                <el-button icon="el-icon-delete" type="text" @click="handleRemove(photo)"></el-button>
+                            </div>
+                        </div>
+                        <el-upload class="photos-uploader logo-uploader" action="{:url('api/crm/upload')}"
+                                   :headers="headers"
+                                   :show-file-list="false" :on-success="handleintroimgSuccess" multiple>
+                            <i class="el-icon-plus logo-uploader-icon"></i>
+                        </el-upload>
+                    </el-col>
+                </el-form-item>
+                <el-form-item v-if="{$role_id}!=3" label="选择公司" prop="company_id">
+                    <el-col :span="18">
+                        <el-select v-model="goodsForm.company_id" placeholder="选择公司">
+                            <el-option
+                                    v-for="item in companyData"
+                                    :key="item.id"
+                                    :label="item.name"
+                                    :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </el-col>
+                </el-form-item>
+                <el-form-item label="是否上架" prop="">
+                    <el-col :span="18">
+                        <el-switch
+                                v-model="goodsForm.is_on_sale"
+                                active-color="#13ce66"
+                                inactive-color="#ff4949"
+                                :active-value="1"
+                                :inactive-value="0">
+                        </el-switch>
+                    </el-col>
+                </el-form-item>
+                <el-form-item label="商品价格" prop="price">
+                    <el-col :span="18">
+                        <el-input v-model="goodsForm.price" placeholder="商品价格"></el-input>
+                    </el-col>
+                </el-form-item>
+                <el-form-item label="库存" prop="stock">
+                    <el-col :span="18">
+                        <el-input v-model="goodsForm.stock" type="number" placeholder="库存"></el-input>
+                    </el-col>
+                </el-form-item>
+                <el-form-item label="是否支持积分" prop="">
+                    <el-col :span="18">
+                        <el-switch
+                                v-model="goodsForm.is_points"
+                                active-color="#13ce66"
+                                inactive-color="#ff4949"
+                                :active-value="1"
+                                :inactive-value="0">
+                        </el-switch>
+                    </el-col>
+                </el-form-item>
+                <el-form-item v-if="goodsForm.is_points == 1" label="可使用积分" prop="points">
+                    <el-col :span="18">
+                        <el-input v-model="goodsForm.points" placeholder="可使用积分"></el-input>
+                    </el-col>
+                </el-form-item>
+                <el-form-item label="赠送积分" prop="gift_points">
+                    <el-col :span="18">
+                        <el-input v-model="goodsForm.gift_points" type="number" placeholder="赠送积分"></el-input>
+                    </el-col>
+                </el-form-item>
+                <el-form-item label="" prop="">
+                    <el-col :span="24">
+                        <el-button @click="add_menu">新增规格</el-button>
+                    </el-col>
+                </el-form-item>
+                <el-form-item
+                        v-for="(domain, index) in goodsForm.goods_specs"
+                        :label="'规格' + index"
+                        :key="domain.key"
+                        :rules="{required: true, message: '商品规格不能为空', trigger: 'blur'}"
+                        :prop="'goods_specs.' + index + '.spec_name'">
+                    <el-input v-model="domain.spec_name" style="width:200px" placeholder="规格名称"></el-input>
+                    <el-input v-model="domain.stock" type="number" style="width:200px" placeholder="库存"
+                              prop="stock"></el-input>
+                    <el-input v-model="domain.price" style="width:200px" placeholder="价格"></el-input>
+                    <el-button @click.prevent="remove_menu(domain)">删除</el-button>
+                </el-form-item>
+                <el-form-item label="赠送积分" prop="give_points">
+                    <el-col :span="18">
+                        <el-input v-model="goodsForm.give_points" placeholder="赠送积分"></el-input>
+                    </el-col>
+                </el-form-item>
+                <el-form-item label="商品详细" prop="goods_detail">
+                    <el-col :span="18">
+                        <vue-ueditor-wrap v-model="goodsForm.goods_detail" :config="myConfig"
+                                          style="line-height: 0px;"></vue-ueditor-wrap>
+                    </el-col>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+            <el-button v-if="goodsForm.id === ''" type="primary" @click="submit('goodsForm')">新增</el-button>
+            <el-button v-else type="primary" @click="submit('goodsForm')">修改</el-button>
+        </span>
+        </el-dialog>
+    </el-tabs>
+</div>
+</body>
+<script>
+    Vue.component('vue-ueditor-wrap', VueUeditorWrap)
+    var app = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                tableData: [],
+                companyData: [],
+                form: {
+                    // name: '',
+                    company_id: '',
+                    duration: '',
+                },
+                myConfig: {
+                    // 编辑器不自动被内容撑高
+                    autoHeightEnabled: false,
+                    // 初始容器高度
+                    initialFrameHeight: 400,
+                    zIndex: 3000,
+                    // 初始容器宽度
+                    initialFrameWidth: '90%',
+                    // 上传文件接口（这个地址是我为了方便各位体验文件上传功能搭建的临时接口，请勿在生产环境使用！！！）
+                    serverUrl: 'http://ml.0513app.cn/static/UEditor/php/controller.php',
+                    // UEditor 资源文件的存放路径，如果你使用的是 vue-cli 生成的项目，通常不需要设置该选项，vue-ueditor-wrap 会自动处理常见的情况，如果需要特殊配置，参考下方的常见问题2
+                    UEDITOR_HOME_URL: '/static/UEditor/',
+                },
+                totalNum: 0,
+                currentPage: 1,
+                dialogLoading: false,
+                onDataLoading: false,
+                durationOptions: {
+                    shortcuts: [{
+                        text: '一周',
+                        onClick(picker) {
+                            const end = new Date();
+                            const start = new Date();
+                            end.setTime(end.getTime() + 3600 * 1000 * 24 * 7);
+                            picker.$emit('pick', [start, end]);
+                        }
+                    }, {
+                        text: '一个月',
+                        onClick(picker) {
+                            const end = new Date();
+                            const start = new Date();
+                            end.setTime(end.getTime() + 3600 * 1000 * 24 * 30);
+                            picker.$emit('pick', [start, end]);
+                        }
+                    }, {
+                        text: '三个月',
+                        onClick(picker) {
+                            const end = new Date();
+                            const start = new Date();
+                            end.setTime(end.getTime() + 3600 * 1000 * 24 * 90);
+                            picker.$emit('pick', [start, end]);
+                        }
+                    }]
+                },
+                goodsForm: {
+                    id: '',
+                    goods_name: '',
+                    goods_detail: '',
+                    price: '',
+                    is_points: '',
+                    is_on_sale: 0,
+                    give_points: '',
+                    goods_img: [],
+                    company_id: '',
+                    goods_specs: [],
+                    stock: '',
+                },
+                dialogVisible: false,
+                rules: {
+                    goods_name: [{required: true, message: '请输入商品标题', trigger: 'blur'}],
+                    company_id: [{required: true, message: '请选择公司', trigger: 'blur'}],
+                    goods_img: [{required: true, message: '请上传商品图片', trigger: 'blur'}],
+                    sign_time: [{required: true, message: '请选择前面时间', trigger: 'blur'}],
+                    stock: [{required: true, message: '请输入库存', trigger: 'blur'}],
+                    price: [{required: true, message: '请输入产品价格', trigger: 'blur'}],
+                    // goods_spec['stock']: [{required: true, message: '请输入限额报名数', trigger: 'blur'}],
+                },
+                headers: {'X-Requested-With': 'XMLHttpRequest'},
+            }
+        },
+        created() {
+            this.getCompanyData();
+            this.getData()
+        },
+        methods: {
+            clearForm() {
+                this.form = {
+                    company_id: '',
+                    duration: '',
+                }
+            },
+            getData(page = 1) {
+                let _this = this;
+                let params = {page: page};
+                this.onDataLoading = true;
+                if (this.form.duration !== '') {
+                    params.duration = this.form.duration;
+                }
+                if (this.form.company_id) {
+                    params.company_id = this.form.company_id;
+                }
+                axios.get("{:url('admin/goods/goods_list')}", {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                    params: params
+                }).then(function (response) {
+                    console.log(response.data.data);
+                    _this.onDataLoading = false;
+                    if (response.data.code === 1) {
+                        _this.tableData = response.data.data.data;
+                        _this.totalNum = response.data.data.total;
+                        console.log(_this.totalNum)
+                    } else {
+                        _this.$message({
+                            message: response.data.msg,
+                            type: 'warning'
+                        });
+                    }
+                }).catch(function (error) {
+                    _this.onDataLoading = false;
+                    _this.$message.error(error.toString())
+                })
+            },
+            getCompanyData() {
+                let _this = this;
+                axios.get("{:url('admin/company/get_company_list')}", {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                }).then(function (response) {
+                    _this.onDataLoading = false;
+                    if (response.data.code === 1) {
+                        _this.companyData = response.data.data;
+                    } else {
+                        _this.$message({
+                            message: response.data.msg,
+                            type: 'warning'
+                        });
+                    }
+                }).catch(function (error) {
+                    _this.onDataLoading = false;
+                    _this.$message.error(error.toString())
+                })
+            },
+            handleAvatarSuccess(res, file) {
+                this.imageUrl = URL.createObjectURL(file.raw);
+                this.sourceFrom.cover_img = res.url;
+                console.log(this.sourceFrom.cover_img)
+            },
+            handleRemove(file, fileList) {
+                let index = this.goodsForm.goods_img.indexOf(file);
+                this.goodsForm.goods_img.splice(index, 1);
+            },
+            handleintroimgSuccess(res, file) {
+                if (res.code === 1) {
+                    this.goodsForm.goods_img.push(res.url);
+                } else {
+                    this.$message.error(res.msg)
+                }
+            },
+            beforeAvatarUpload(file) {
+                const isJPG = file.type === 'image/jpeg' || 'image/png';
+
+                const isLt2M = file.size / 1024 / 1024 < 10;
+
+                if (!isJPG) {
+                    this.$message.error('上传头像图片只能是 JPG 格式或者PNG格式!');
+                }
+                if (!isLt2M) {
+                    this.$message.error('上传头像图片大小不能超过 2MB!');
+                }
+                return isJPG && isLt2M;
+            },
+            change_status(field, value, id) {
+                let _this = this;
+                this.dialogLoading = true;
+                let params = {field: field, value: value, id: id};
+                axios.post("{:url('admin/goods/change_status')}", params, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    }
+                }).then(function (response) {
+                    _this.dialogLoading = false;
+                    if (response.data.code === 1) {
+                        _this.$message.success('修改完成');
+                        _this.getData(_this.currentPage);
+                    } else {
+                        _this.$message.warning(response.data.msg);
+                    }
+                })
+            },
+            update(data) {
+                let _this = this;
+                if (data) {
+                    _this.goodsForm = JSON.parse(JSON.stringify(data));
+                    console.log(_this.goodsForm)
+                } else {
+                    _this.goodsForm = {
+                        id: '',
+                        goods_name: '',
+                        goods_detail: '',
+                        price: '',
+                        is_points: '',
+                        give_points: 0,
+                        goods_img: [],
+                        company_id: '',
+                        goods_specs: [],
+                        stock: '',
+                    }
+                }
+                _this.dialogVisible = true;
+                _this.dialogLoading = false;
+            },
+            submit(form) {
+                let _this = this;
+                _this.$refs[form].validate((valid) => {
+                    if (valid) {
+                        axios.post("{:url('admin/goods/update')}", this.goodsForm, {
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest',
+                            }
+                        }).then(function (response) {
+                            _this.dialogLoading = false;
+                            if (response.data.code === 1) {
+                                if (_this.goodsForm.id === '') {
+                                    _this.$message.success('新增完成');
+                                } else {
+                                    _this.$message.success('修改成功');
+                                }
+                                _this.getData();
+                                _this.dialogVisible = false;
+                            } else {
+                                _this.$message.warning(response.data.msg);
+                            }
+                        }).catch(function (error) {
+                            _this.dialogLoading = false;
+                            _this.$message.error(error.toString())
+                        })
+                    } else {
+                        _this.dialogLoading = false;
+                        return false;
+                    }
+                });
+            },
+            add_menu() {
+                this.goodsForm.goods_spec.push({
+                    value: '',
+                    key: Date.now()
+                });
+            },
+            remove_menu(item) {
+                var index = this.goodsForm.goods_spec.indexOf(item)
+                if (index !== -1) {
+                    this.goodsForm.goods_spec.splice(index, 1)
+                }
+            },
+            delete_activity(id) {
+                let _this = this;
+                axios.post("{:url('admin/activity/delete')}", {id: id}, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    }
+                }).then(function (response) {
+                    _this.dialogLoading = false;
+                    if (response.data.code === 1) {
+                        if (_this.sourceFrom.id === '') {
+                            _this.$message.success('新增完成');
+                        } else {
+                            _this.$message.success('修改成功');
+                        }
+                        _this.getData(_this.currentPage);
+                        _this.dialogVisible = false;
+                    } else {
+                        _this.$message.warning(response.data.msg);
+                    }
+                }).catch(function (error) {
+                    _this.dialogLoading = false;
+                    _this.$message.error(error.toString())
+                })
+            },
+            formatDate(timestamp) {
+                if (timestamp) {
+                    let date = new Date(timestamp * 1000);
+                    return date.getFullYear() + '-' + this.prefix(date.getMonth() + 1) + '-' + this.prefix(date.getDate()) + ' ' + this.prefix(date.getHours()) + ':' + this.prefix(date.getMinutes()) + ':' + this.prefix(date.getSeconds());
+                } else {
+                    return '';
+                }
+            },
+            prefix(num) {
+                if (num < 10) {
+                    return '0' + num;
+                }
+                return num;
+            }
+        }
+    });
+</script>
