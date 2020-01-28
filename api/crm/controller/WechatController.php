@@ -41,7 +41,9 @@ class WechatController extends RestBaseController
         $zt = isset($data['zt']) && $data['zt'] ? $data['zt'] : 0;
         $zp = isset($data['zp']) && $data['zp'] ? $data['zp'] : 0;
         $url = 'http://crmhtml.test2.zhicaisoft.cn/views/addRecord.html?id=' . $id . '&zt=' . $zt . '&zp=' . $zp;
-        $js = hook('get_jssdk', $url);
+        $params['url'] = $url;
+        $params['company_id'] = $id;
+        $js = hook('get_jssdk', $params);
         $this->success('js', $js);
     }
 
@@ -116,6 +118,7 @@ class WechatController extends RestBaseController
         }
         header('Location:' . $url);
     }
+
 
     public function send_message()
     {

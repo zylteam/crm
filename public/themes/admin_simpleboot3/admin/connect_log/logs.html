@@ -146,6 +146,8 @@
                     </template>
                 </el-table-column>
             </el-table>
+            <el-pagination background layout="total,prev, pager, next" :total="totalNum" :page-size="10"
+                           :current-page.sync="currentPage" @current-change="getData"></el-pagination>
         </el-tab-pane>
         <el-dialog :title="sourceFrom.id == '' ? '新增客户来源' : '查看详细'" :visible.sync="dialogVisible" width="60%"
                    v-loading.fullscreen="dialogLoading">
@@ -365,6 +367,7 @@
                     _this.onDataLoading = false;
                     if (response.data.code === 1) {
                         _this.tableData = response.data.data.data;
+                        _this.totalNum = response.data.data.total;
                     } else {
                         _this.$message({
                             message: response.data.msg,

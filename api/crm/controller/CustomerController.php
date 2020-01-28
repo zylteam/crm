@@ -598,6 +598,7 @@ class CustomerController extends RestBaseController
                 break;
         }
         $where[] = ['company_id', '=', $current_user_info['company_id']];
+
         $customer_status = CustomerStatusModel::field('id,name')
             ->withCount(['customer_list' => function ($query) {
                 $data = $this->request->param();
@@ -652,7 +653,7 @@ class CustomerController extends RestBaseController
                 $where[] = ['role_name', '=', ''];
                 $where[] = ['status', '=', 0];
                 $where[] = ['user_type', '=', 2];
-
+                $where[] = ['is_delete', '=', 0];
                 if ($parent_id_where) {
                     $where[] = $parent_id_where;
                 }

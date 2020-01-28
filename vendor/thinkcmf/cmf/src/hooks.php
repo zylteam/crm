@@ -62,11 +62,17 @@ return [
         "name" => '获取jssdk', // 钩子名称
         "description" => "获取jssdk", //钩子描述
         "once" => 1 // 是否只执行一次
-    ],
+    ],//wechatWebPayOrder
     'send_template_message' => [
         "type" => 1,//钩子类型(默认为应用钩子;1:核心钩子;2:应用钩子;3:模板钩子;4:后台模板钩子)
         "name" => '发送微信模板消息', // 钩子名称
         "description" => "发送微信模板消息", //钩子描述
+        "once" => 1 // 是否只执行一次
+    ],
+    'wechat_web_pay_order' => [
+        "type" => 1,//钩子类型(默认为应用钩子;1:核心钩子;2:应用钩子;3:模板钩子;4:后台模板钩子)
+        "name" => '微信web支付', // 钩子名称
+        "description" => "微信web支付", //钩子描述
         "once" => 1 // 是否只执行一次
     ],
 ];

@@ -12,4 +12,10 @@ class AdvModel extends Model
     {
         return $this->belongsTo('AdvPositionModel','position_id');
     }
+
+
+    public function companyInfo()
+    {
+        return $this->belongsTo('CompanyModel', 'company_id');
+    }
 }

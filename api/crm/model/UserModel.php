@@ -76,7 +76,7 @@ class UserModel extends Model
     {
         return $this->hasMany('ConnectLogModel', 'customer_id');
     }
-
+    
 
 
 }

@@ -108,28 +108,64 @@ class WechatPlugin extends Plugin
         ]);
     }
 
-    public function getJssdk($url)
+    public function getJssdk($param)
     {
-        $config = $this->getConfig();
+        $company_id = $param['company_id'];
+        $user_id = isset($param['user_id']) && $param['user_id'] ? $param['user_id'] : 0;
+        $return_url = isset($param['return_url']) && $param['return_url'] ? $param['return_url'] : 0;
+        $setting = WechatSettingModel::where('company_id', $company_id)->find();
+        $config = unserialize($setting['setting']);
         $web_config = [
-            'app_id' => $config['web_appid'],
-            'secret' => $config['web_secret'],
+            'app_id' => $config['appid'],
+            'secret' => $config['secret'],
             'response_type' => 'array',
             'oauth' => [
-                'scopes' => ['snsapi_base'],
-                'callback' => '/mobile/weixin/oauth_callback',
+                'scopes' => ['snsapi_userinfo'],
+                'callback' => '/api/wechat/oauth_callback/?id=' . $company_id . '&user_id=' . $user_id . '&return_url=' . $return_url,
+
             ],
         ];
         $app = Factory::officialAccount($web_config);
-        $app->jssdk->setUrl($url);
+        $app->jssdk->setUrl($param['url']);
         $js = $app->jssdk->buildConfig(array('updateAppMessageShareData', 'getLocation'), $debug = false, $beta = true, $json = false);
-
         return $js;
     }
 
-    public function wechatWebPayOrder($param){
-
+    public function wechatWebPayOrder($param)
+    {
+        $company_id = $param['company_id'];
+        $setting = WechatSettingModel::where('company_id', $company_id)->find();
+        $config = unserialize($setting['setting']);
+        $web_config = [
+            'app_id' => $config['appid'],
+            'secret' => $config['secret'],
+            'mch_id' => $config['mch_id'],
+            'key' => $config['key'],
+            'cert_path' => __DIR__ . '/' . $config['cert_path'], // XXX: 绝对路径！！！！
+            'key_path' => __DIR__ . '/' . $config['key_path'],      // XXX: 绝对路径！！！！
+            'notify_url' => $config['notify_url'],     // 你也可以在下单时单独设置来想覆盖它
+            'log' => [
+                'level' => 'debug',
+                'file' => __DIR__ . '/logs/wechat.log',
+            ],
+        ];
+        $app = Factory::payment($web_config);
+        $jssdk = $app->jssdk;
+        $result = $app->order->unify([
+            'body' => '腾讯充值中心-QQ会员充值',
+            'out_trade_no' => '20150806125346',
+            'total_fee' => 88,
+            'trade_type' => 'JSAPI', // 请对应换成你的支付方式对应的值类型
+            'openid' => 'oRdnWwhhnQiNotHmpYCV7_S_KhLs',
+        ]);
+        $url = 'http://crmhtml.test2.zhicaisoft.cn/test.html?id=1&openid=oRdnWwhhnQiNotHmpYCV7_S_KhLs';
+        $app->jssdk->setUrl($url);
+        $js = $app->jssdk->buildConfig(array('chooseWXpay'), $debug = false, $beta = true, $json = false);
+        $pay_config = $jssdk->bridgeConfig($result['prepay_id'], false);
+        $pay_config['js'] = $js;
+        return $pay_config;
     }
+
     //实现的wechat_xcx_pay_order钩子方法
     public function wechatXcxPayOrder($param)
     {

@@ -21,6 +21,7 @@ class WechatBaseController extends PluginAdminBaseController
         $user_info = UserModel::get($admin_id);
         $this->company_id = $user_info['company_id'];
         $setting = WechatSettingModel::where('company_id', $user_info['company_id'])->find();
+//        $plugin = new  WechatPlugin();
         $config = unserialize($setting['setting']);
         $this->options = [
             /**

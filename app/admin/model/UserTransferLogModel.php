@@ -36,10 +36,4 @@ class UserTransferLogModel extends Model
             'true_name' => 'customer_user_true_name'
         ]);
     }
-
-    public function getOperateTypeAttr($value)
-    {
-        $status = [0 => '访问记录', 1 => '转移记录'];
-        return $status[$value];
-    }
 }

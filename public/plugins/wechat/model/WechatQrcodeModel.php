@@ -17,7 +17,7 @@ class WechatQrcodeModel extends Model
      * @param $type
      * @param string $qtcode_id
      */
-    public static function createTemporaryQrcode($id,$type, $qtcode_id=''){
+    public static function createTemporaryQrcode($id,$type,$qtcode_id=''){
         $qrcode = WechatService::qrcodeService();
         $data  = $qrcode->temporary($id,30*24*3600)->toArray();
         $data['qrcode_url'] = $data['url'];

@@ -159,7 +159,7 @@ class UserController extends RestBaseController
                 if ($item['last_check_time']) {
                     $item['last_check_time'] = date('Y-m-d H:i:s', $item['last_check_time']);
                 } else {
-                    $item['last_check_time'] = $item['create_time'];
+//                    $item['last_check_time'] = $item['create_time'];
                 }
                 return $item;
             });

@@ -5,28 +5,33 @@
     <el-tabs type="border-card">
         <el-tab-pane label="广告位列表" v-loading="onDataLoading">
             <!-- <el-button @click="fetchData">查询</el-button> -->
-
             <el-button :span="4" type="primary" size="mini" style="float: right" @click="edit(null)">新增</el-button>
-
-
             <el-table :data="tableData" style="width: 100%">
-
                 <el-table-column prop="id" label="广告编号" width="80"></el-table-column>
+                <el-table-column prop="sort" label="排序">
+                    <template slot-scope="scope">
+                        <el-input v-model="scope.row.sort"
+                                  @change="change_status('sort',scope.row.sort,scope.row.id)"></el-input>
+                    </template>
+                </el-table-column>
                 <el-table-column prop="title" label="广告标题"></el-table-column>
+                <el-table-column v-if="{$role_id}!=3" prop="company_info.name" label="公司"></el-table-column>
                 <el-table-column prop="position.position_name" label="所属位置" min-width="100"></el-table-column>
                 <el-table-column prop="img" label="图片" width="200">
                     <template slot-scope="scope">
-                        <img :src="scope.row.img" class="img" height="70">
+                        <img :src="scope.row.adv_img" class="img" height="70">
                     </template>
-
                 </el-table-column>
-
-                <el-table-column prop="sort" label="排序"></el-table-column>
-
                 <el-table-column prop="status" label="是否启用">
                     <template slot-scope="scope">
-                        <span v-if="scope.row.status === 1">启用</span>
-                        <span v-else>禁用</span>
+                        <el-switch
+                                v-model="scope.row.status"
+                                active-color="#13ce66"
+                                :active-value="1"
+                                :inactive-value="0"
+                                @change="change_status('status',scope.row.status,scope.row.id)"
+                                inactive-color="#ff4949">
+                        </el-switch>
                     </template>
                 </el-table-column>
 
@@ -39,14 +44,14 @@
                 </el-table-column>
 
                 <el-table-column prop="adv_url" label="链接url" min-width="170"></el-table-column>
-
-                <el-table-column prop="add_time" label="添加时间" min-width="160"></el-table-column>
-
+                <el-table-column prop="create_time" label="添加时间" min-width=180">
+                    <template slot-scope="scope">
+                        {{formatDate(scope.row.create_time)}}
+                    </template>
+                </el-table-column>
                 <el-table-column label="操作" width="250">
                     <template slot-scope="scope">
-
                         <el-button size="mini" type="primary" @click="edit(scope.row)">编辑</el-button>
-
                         <el-button size="mini" type="danger" v-loading.del="loadingnext" @click="remove(scope.row.id)">
                             删除
                         </el-button>
@@ -75,7 +80,18 @@
                     </el-select>
                 </el-form-item>
 
-
+                <el-form-item v-if="{$role_id}!=3" label="选择公司" prop="company_id">
+                    <el-col :span="18">
+                        <el-select v-model="editForm.company_id" placeholder="选择公司">
+                            <el-option
+                                    v-for="item in companyData"
+                                    :key="item.id"
+                                    :label="item.name"
+                                    :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </el-col>
+                </el-form-item>
                 <el-form-item label="类型">
                     <el-select v-model="editForm.type">
                         <el-option v-for="(type, index) in type" :value="index" :label="type" :key="index"></el-option>
@@ -84,11 +100,11 @@
 
                 <el-form-item label="文章id" v-if="editForm.type == 0">
                     <el-col :span="12">
-                        <el-input v-model="editForm.adv_url" placeholder="请输入文章id"></el-input>
+                        <el-input v-model="editForm.link_url" placeholder="请输入文章id"></el-input>
                 </el-form-item>
                 <el-form-item label="内部链接" v-if="editForm.type == 2">
                     <el-col :span="12">
-                        <el-input v-model="editForm.adv_url" placeholder="内部链接"></el-input>
+                        <el-input v-model="editForm.link_url" placeholder="内部链接"></el-input>
                 </el-form-item>
                 <el-form-item label="排序">
                     <el-col :span="12">
@@ -106,11 +122,11 @@
                     <el-col :span="18">
                         <el-upload
                                 class="avatar-uploader"
-                                action="http://ml.0513app.cn/api/upload/upload"
+                                action="{:url('api/crm/upload')}"
                                 :show-file-list="false"
                                 :on-success="handleAvatarSuccess"
                                 :before-upload="beforeAvatarUpload">
-                            <img v-if="editForm.img" :src="editForm.img" class="avatar">
+                            <img v-if="editForm.adv_img" :src="editForm.adv_img" class="avatar">
                             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                         </el-upload>
                     </el-col>
@@ -176,8 +192,9 @@
         data: function () {
             return {
                 tableData: [],
+                companyData:[],
                 position: [],
-                type: ['文章id', '无','内部链接'],
+                type: ['文章id', '无', '内部链接'],
                 currentPage: 1,
                 totalNum: 0,
                 headers: {'X-Requested-With': 'XMLHttpRequest'},
@@ -204,9 +221,30 @@
         },
         created() {
             this.fetchData();//用于当前 Vue 实例的初始化选项
+            this.getCompanyData()
         },
         methods: {  //触发当前实例上的事件。附加参数都会传给监听器回调
-
+            getCompanyData() {
+                let _this = this;
+                axios.get("{:url('admin/company/get_company_list')}", {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                }).then(function (response) {
+                    _this.onDataLoading = false;
+                    if (response.data.code === 1) {
+                        _this.companyData = response.data.data;
+                    } else {
+                        _this.$message({
+                            message: response.data.msg,
+                            type: 'warning'
+                        });
+                    }
+                }).catch(function (error) {
+                    _this.onDataLoading = false;
+                    _this.$message.error(error.toString())
+                })
+            },
             logoUploadSuccess(res, file) {
                 console.log(res)
                 if (res.code === 1) {
@@ -254,6 +292,20 @@
                         self.onDataLoading = false;
                         self.fetchError = error
                     })
+            },
+            formatDate(timestamp) {
+                if (timestamp) {
+                    let date = new Date(timestamp * 1000);
+                    return date.getFullYear() + '-' + this.prefix(date.getMonth() + 1) + '-' + this.prefix(date.getDate()) + ' ' + this.prefix(date.getHours()) + ':' + this.prefix(date.getMinutes()) + ':' + this.prefix(date.getSeconds());
+                } else {
+                    return '';
+                }
+            },
+            prefix(num) {
+                if (num < 10) {
+                    return '0' + num;
+                }
+                return num;
             },
             edit(row) {
                 if (row == null) {
@@ -313,8 +365,24 @@
                         // self.fetchError = error
                     })
             },
-
-
+            change_status(field, value, id) {
+                let _this = this;
+                this.dialogLoading = true;
+                let params = {field: field, value: value, id: id};
+                axios.post("{:url('admin/adv/change_status')}", params, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    }
+                }).then(function (response) {
+                    _this.dialogLoading = false;
+                    if (response.data.code === 1) {
+                        _this.$message.success('修改完成');
+                        _this.getData(_this.currentPage);
+                    } else {
+                        _this.$message.warning(response.data.msg);
+                    }
+                })
+            },
             remove(id) {
                 let _this = this;
                 this.$confirm('此操作将永久删除该条目, 是否继续?', '警告', {

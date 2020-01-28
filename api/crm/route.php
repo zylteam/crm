@@ -82,6 +82,8 @@ Route::post('crm/upload', 'crm/Upload/upload');
 Route::get('crm/user_info', 'crm/Wechat/get_user_info');
 Route::get('wechat/oauth_callback', 'crm/Wechat/oauth_callback');
 Route::get('wechat/send_message', 'crm/Wechat/send_message');
+Route::get('wechat/pay_order', 'crm/WechatUser/pay_order');
+//pay_order
 //活动入口
 Route::get('activity/get_activity_list', 'crm/Activity/get_activity_list');
 Route::get('activity/get_activity_detail', 'crm/Activity/get_activity_detail');
@@ -89,4 +91,6 @@ Route::post('activity/activity_sign', 'crm/Activity/activity_sign');
 //商品
 Route::get('goods/get_goods_list', 'crm/Goods/get_goods_list');
 Route::get('goods/get_goods_by_id', 'crm/Goods/get_goods_by_id');
+//广告
+Route::get('adv/get_adv', 'crm/Adv/get_adv');
 

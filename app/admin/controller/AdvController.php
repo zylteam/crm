@@ -6,17 +6,32 @@ namespace app\admin\controller;
 
 use app\admin\model\AdvModel;
 use app\admin\model\AdvPositionModel;
+use app\admin\model\RoleUserModel;
+use app\admin\model\UserModel;
 use cmf\controller\AdminBaseController;
 
 class AdvController extends AdminBaseController
 {
     public function adv_list()
     {
+        $admin_id = cmf_get_current_admin_id();
+        $role_id = RoleUserModel::where('user_id', $admin_id)->value('role_id');
+        $role_id = $role_id ? $role_id : 1;
+        $this->assign('role_id', $role_id);
         if ($this->request->isAjax()) {
             $data = $this->request->param();
             $page = isset($data['page']) && $data['page'] ? $data['page'] : 1;
             $num = 10;
-            $list = AdvModel::with('position')->paginate($num, false, ['page' => $page]);
+            $where = [];
+            $admin_id = cmf_get_current_admin_id();
+            $admin_info = UserModel::get($admin_id);
+            if ($admin_info['company_id']) {
+                $where['company_id'] = $admin_info['company_id'];
+            }
+            $list = AdvModel::with('position,company_info')
+                ->where($where)
+                ->order('sort desc,status desc,create_time desc')
+                ->paginate($num, false, ['page' => $page]);
             $adv_address = AdvPositionModel::all();
             $this->success('', null, ['list' => $list->items(), 'count' => $list->total(), 'adv_address' => $adv_address]);
         }
@@ -29,7 +44,9 @@ class AdvController extends AdminBaseController
             $data = $this->request->param();
             $page = isset($data['page']) && $data['page'] ? $data['page'] : 1;
             $num = 10;
-            $list = AdvPositionModel::withCount('adv_list')->paginate($num, false, ['page' => $page]);
+            $list = AdvPositionModel::withCount('adv_list')
+                ->order('create_time desc')
+                ->paginate($num, false, ['page' => $page]);
             $this->success('', null, ['list' => $list->items(), 'count' => $list->total()]);
         }
         return $this->fetch();
@@ -49,8 +66,8 @@ class AdvController extends AdminBaseController
             } else {
                 $position = new  AdvPositionModel();
             }
-            $position->position_name = $data['title'];
-            $position->num = $data['num'];
+            $position->position_name = $data['position_name'];
+//            $position->num = $data['num'];
             $position->status = isset($data['status']) && $data['status'] ? $data['status'] : 0;
             $res = $position->save();
             if ($res) {
@@ -67,21 +84,27 @@ class AdvController extends AdminBaseController
         if ($this->request->isAjax()) {
             $data = $this->request->param();
             if (isset($data['id']) && $data['id']) {
-                $advlist = Advlist::get($data['id']);
+                $adv_model = AdvModel::get($data['id']);
             } else {
-                $advlist = new Advlist();
-                $advlist->add_time = time();
+                $adv_model = new AdvModel();
             }
-            $advlist->sort = $data['sort'];
-            $advlist->adv_id = $data['adv_id'];
-            $advlist->title = $data['title'];
-            $advlist->img = $data['img'];
-            $advlist->status = $data['status'];
-            $advlist->type = $data['type'];
-            $advlist->organ_id = $data['organ_id'];
-            $advlist->curriculum_id = $data['curriculum_id'];
-            $advlist->adv_url = $data['adv_url'];
-            $res = $advlist->save();
+            $admin_id = cmf_get_current_admin_id();
+            $admin_info = UserModel::get($admin_id);
+            if ($admin_info['company_id']) {
+                $company_id = $admin_info['company_id'];
+            } else {
+                $company_id = isset($data['company_id']) && $data['company_id'] ? $data['company_id'] : 0;
+            }
+            $adv_model->company_id = $company_id;
+            $adv_model->position_id = $data['position_id'];
+            $adv_model->sort = $data['sort'];
+            $adv_model->adv_id = $data['position_id'];
+            $adv_model->title = $data['title'];
+            $adv_model->adv_img = $data['adv_img'];
+            $adv_model->status = $data['status'];
+            $adv_model->type = $data['type'];
+            $adv_model->link_url = $data['link_url'];
+            $res = $adv_model->save();
             if ($res) {
                 $this->success('修改成功');
             } else {
@@ -90,6 +113,24 @@ class AdvController extends AdminBaseController
 
         }
 
+    }
+
+    public function change_status()
+    {
+        if ($this->request->isPost()) {
+            $data = $this->request->param();
+            $model = AdvModel::get($data['id']);
+            if ($model) {
+                $res = AdvModel::where(['id' => $data['id']])->update([$data['field'] => $data['value']]);
+                if ($res) {
+                    $this->success('更新成功');
+                } else {
+                    $this->error('更新失败');
+                }
+            } else {
+                $this->error('广告不存在或已被删除');
+            }
+        }
     }
 
     public function delete_advlist()

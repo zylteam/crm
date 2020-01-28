@@ -12,6 +12,7 @@ class UploadController extends RestBaseController
     public function upload()
     {
         if ($this->request->isPost()) {
+
             $uploader = new Upload();
             $res = $uploader->upload();
             if ($res === false) {

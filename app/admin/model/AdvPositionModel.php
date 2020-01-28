@@ -12,4 +12,6 @@ class AdvPositionModel extends Model
     {
         return $this->hasMany('AdvModel', 'position_id');
     }
+
+  
 }
