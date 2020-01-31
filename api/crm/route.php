@@ -80,14 +80,23 @@ Route::group('crm', function () {
 Route::post('crm/upload', 'crm/Upload/upload');
 //获取微信用户信息 send_message
 Route::get('crm/user_info', 'crm/Wechat/get_user_info');
-Route::get('wechat/oauth_callback', 'crm/Wechat/oauth_callback');
-Route::get('wechat/send_message', 'crm/Wechat/send_message');
-Route::get('wechat/pay_order', 'crm/WechatUser/pay_order');
+
+Route::group('wechat', function () {
+    Route::get('oauth_callback', 'crm/Wechat/oauth_callback');
+    Route::get('send_message', 'crm/Wechat/send_message');
+    Route::get('pay_order', 'crm/WechatUser/pay_order');
+    Route::post('refund_order', 'crm/WechatUser/refund_order');
+    Route::get('get_my_activity', 'crm/Activity/get_my_activity');
+    Route::post('add_cart', 'crm/Goods/add_cart');
+    Route::get('get_user_cart', 'crm/Goods/get_user_cart');
+    Route::post('activity_sign', 'crm/Activity/activity_sign');//get_my_activity
+});
 //pay_order
 //活动入口
 Route::get('activity/get_activity_list', 'crm/Activity/get_activity_list');
 Route::get('activity/get_activity_detail', 'crm/Activity/get_activity_detail');
-Route::post('activity/activity_sign', 'crm/Activity/activity_sign');
+
+
 //商品
 Route::get('goods/get_goods_list', 'crm/Goods/get_goods_list');
 Route::get('goods/get_goods_by_id', 'crm/Goods/get_goods_by_id');

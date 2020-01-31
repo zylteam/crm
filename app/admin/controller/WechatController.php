@@ -50,4 +50,9 @@ class WechatController extends AdminBaseController
             }
         }
     }
+
+    public function template_message()
+    {
+        return $this->fetch();
+    }
 }

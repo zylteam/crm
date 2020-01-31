@@ -5,8 +5,12 @@ namespace api\crm\controller;
 
 
 use api\crm\model\ConnectLogModel;
+use api\crm\model\CustomerStatusModel;
+use api\crm\model\IntentionTagModel;
 use api\crm\model\UserModel;
 use cmf\controller\RestBaseController;
+use Overtrue\Socialite\User;
+use plugins\wechat\model\TemplateMessageModel;
 use think\Db;
 use think\Exception;
 
@@ -42,6 +46,35 @@ class ConnectController extends RestBaseController
                     $connect_log = ConnectLogModel::create($data);
                     $res = $connect_log->save();
                     if ($res) {
+                        $user_info = UserModel::get($user_id);
+                        $template_message = TemplateMessageModel::where(['company_id' => $customer_info['company_id'], 'template_title' => '跟进记录审核通知', 'status' => 1])
+                            ->find();
+                        if ($template_message['template_id']) {
+                            $tag_ids = $data['tag_ids'];
+                            $temp_array = explode(',', $tag_ids);
+                            $tag_status = [];
+                            foreach ($temp_array as $item) {
+                                $tag_status[] = IntentionTagModel::get($item)['name'];
+                            }
+                            $param = [
+                                'company_id' => $customer_info['company_id'],
+                                'template_id' => $template_message['template_id'],
+                                'openid' => 'oRdnWwhhnQiNotHmpYCV7_S_KhLs',
+                                'url' => 'http://crmhtml.test2.zhicaisoft.cn/views/recordsList.html?name=待审核跟进记录',
+                                'data' => [
+                                    'first' => '客户跟进记录的审核通知',
+                                    'keyword1' => $customer_info['true_name'],
+                                    'keyword2' => $customer_info['mobile'],
+                                    'keyword3' => implode(',', $tag_status),
+                                    'keyword4' => CustomerStatusModel::get($data['customer_status'])['name'],
+                                    'keyword5' => $user_info['true_name'],
+                                    'remark' => $data['remark']
+                                ]
+                            ];
+                            hook('send_template_message', $param);
+
+                        }
+
                         Db::commit();
                         $this->success('添加记录成功');
                     } else {

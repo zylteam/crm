@@ -37,7 +37,7 @@ class GoodsController extends AdminBaseController
                 $where[] = ['create_time', 'between time', [$data['duration'][0] . ' 00:00:00', $data['duration'][1] . ' 23:59:59']];
             }
             $page = isset($data['page']) && $data['page'] ? $data['page'] : 1;
-            $list = GoodsModel::with('goods_specs')
+            $list = GoodsModel::with('goods_specs,company_info')
                 ->where($where)
                 ->order('is_on_sale desc,sort desc,create_time desc')
                 ->paginate($num, false, ['page' => $page])->each(function ($item) {
@@ -70,9 +70,10 @@ class GoodsController extends AdminBaseController
             $goods_model->goods_name = $data['goods_name'];
             $goods_model->goods_img = implode(',', $data['goods_img']);
             $goods_model->price = $data['price'];
-            $goods_model->is_points = $data['is_points'];
+            $goods_model->stock = $data['stock'];
+            $goods_model->buy_type = $data['buy_type'];
             $goods_model->is_on_sale = $data['is_on_sale'];
-            $goods_model->points = $data['points'];
+            $goods_model->points = isset($data['points']) && $data['points'] ? $data['points'] : 0;
             $goods_model->gift_points = $data['gift_points'];
             $goods_model->goods_detail = $data['goods_detail'];
             $res = $goods_model->save();

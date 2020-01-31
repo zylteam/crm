@@ -8,20 +8,8 @@ use think\Model;
 
 class ActivityModel extends Model
 {
-    /**
-     * 新增活动
-     * @param $data
-     */
-    public function addActivity($data)
+    public function sign()
     {
-
-    }
-
-    /**
-     * 修改活动
-     */
-    public function updateActivity()
-    {
-
+        return $this->hasMany('ActivitySignModel', 'activity_id');
     }
 }

@@ -12,6 +12,7 @@ use api\crm\model\UserModel;
 use api\user\model\CommentModel;
 use cmf\controller\RestBaseController;
 use mindplay\demo\Form;
+use plugins\wechat\model\TemplateMessageModel;
 use think\Db;
 use think\Exception;
 
@@ -305,6 +306,7 @@ class CustomerController extends RestBaseController
             try {
                 $data = $this->request->param();
                 $id = isset($data['id']) && $data['id'] ? $data['id'] : 0;
+                $user_id = $this->getUserId();
                 $status = isset($data['status']) && $data['status'] ? $data['status'] : 0;
                 $connect_log = ConnectLogModel::with(['customer_info'])->where(['id' => $id, 'status' => 0])->find();
                 if (empty($status)) {
@@ -318,6 +320,28 @@ class CustomerController extends RestBaseController
                         //审核失败
                         $connect_log->status = 2;
                         $res = $connect_log->save();
+                        $template_message = TemplateMessageModel::where(['company_id' => $connect_log['company_id'], 'template_title' => '跟进记录驳回通知', 'status' => 1])
+                            ->find();
+                        if ($template_message['template_id']) {
+                            $customer_info = UserModel::get($connect_log['customer_id']);
+
+                            $param = [
+                                'company_id' => $connect_log['company_id'],
+                                'template_id' => $template_message['template_id'],
+                                'openid' => 'oRdnWwhhnQiNotHmpYCV7_S_KhLs',
+                                'url' => '',
+                                'data' => [
+                                    'first' => '跟进记录驳回通知',
+                                    'keyword1' => date('Y年m月d日 H:i:s', time()),
+                                    'keyword2' => $customer_info['true_name'],
+                                    'keyword3' => $customer_info['mobile'],
+                                    'keyword4' => UserModel::get($connect_log['user_id'])['true_name'],
+                                    'keyword5' => UserModel::get($user_id)['true_name'],
+                                    'remark' => '跟进记录驳回'
+                                ]
+                            ];
+                            hook('send_template_message', $param);
+                        }
                     } else {
                         $customer_status = CustomerStatusModel::get($connect_log['customer_status']);
                         if ($customer_status['name'] == '成交') {
@@ -417,6 +441,7 @@ class CustomerController extends RestBaseController
         $where[] = ['user_type', '=', 2];
         $where[] = ['company_id', '=', $current_user_info['company_id']];
         $where[] = ['parent_id', '=', 0];
+        $where[] = ['is_delete', '=', 0];
         if ($customer_status) {
             $where[] = ['customer_status', '=', $customer_status];
         }

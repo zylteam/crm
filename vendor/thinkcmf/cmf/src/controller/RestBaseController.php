@@ -10,6 +10,9 @@
 // +----------------------------------------------------------------------
 namespace cmf\controller;
 
+use api\crm\model\CartModel;
+use api\crm\model\GoodsModel;
+use api\crm\model\GoodsSpecModel;
 use api\crm\model\WechatUserModel;
 use think\App;
 use think\Container;
@@ -75,6 +78,8 @@ class RestBaseController
         $this->_initUser();
         //微信用户
         $this->_initWechatUser();
+        //清空购物车
+        $this->__autoClearCart();
         // 控制器初始化
         $this->initialize();
 
@@ -309,6 +314,26 @@ class RestBaseController
         return $this->userId;
     }
 
+    /**
+     * 自动清空购物车
+     */
+    public function __autoClearCart()
+    {
+        $list = CartModel::where('create_time', '<', time() - 30 * 60)->where('status', 0)->all();
+        if ($list) {
+            foreach ($list as $key => $value) {
+                $goods_info = GoodsModel::get($value['goods_id']);
+                $goods_info->stock = ['inc', $value['num']];
+                $goods_info->save();
+                if ($value['spec_id']) {
+                    $goods_spec_info = GoodsSpecModel::get($value['spec_id']);
+                    $goods_spec_info->stock = ['inc', $value['num']];
+                    $goods_spec_info->save();
+                }
+                CartModel::where('id', $value['id'])->update(['status' => 2]);
+            }
+        }
+    }
 
     public function getWechatUserId()
     {

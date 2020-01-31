@@ -10,7 +10,7 @@ class CartModel extends Model
 {
     public function userInfo()
     {
-        return $this->belongsTo('UserModel', 'user_id');
+        return $this->belongsTo('WechatUserModel', 'user_id');
     }
 
     public function goodsInfo()
@@ -18,21 +18,9 @@ class CartModel extends Model
         return $this->belongsTo('GoodsModel', 'goods_id');
     }
 
-    /**
-     * 添加购物车
-     * @param $data
-     */
-    public function addCart($data)
+    public function goodsSpecInfo()
     {
-
+        return $this->belongsTo('GoodsSpecModel', 'spec_id');
     }
 
-    /**
-     * 购物车清空
-     * @param $data
-     */
-    public function removeCart($data)
-    {
-
-    }
 }

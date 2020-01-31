@@ -3,11 +3,10 @@
 
 namespace plugins\wechat\controller;
 
+use api\crm\model\ActivitySignModel;
+use api\crm\model\WechatUserModel;
+use api\crm\model\WechatUserPointsLogModel;
 use app\admin\model\WechatSettingModel;
-use app\models\user\User;
-use app\models\user\WechatUser;
-use crmeb\repositories\MessageRepositories;
-use crmeb\services\QrcodeService;
 use EasyWeChat\Factory;
 use EasyWeChat\OfficialAccount\Application;
 use plugins\wechat\model\WechatReplyModel;
@@ -24,6 +23,75 @@ class WechatController extends Controller
 
         $aa = SystemConfigService::get_web_config();
         var_dump($aa);
+    }
+
+    public function notify()
+    {
+        $plugin = new  WechatPlugin();
+        $id = input('id');
+        $setting = WechatSettingModel::where('company_id', $id)->find();
+        $config = unserialize($setting['setting']);
+        $web_config = [
+            'app_id' => $config['appid'],
+            'secret' => $config['secret'],
+            'mch_id' => $config['mch_id'],
+            'key' => $config['key'],
+            'cert_path' => CMF_ROOT . 'public/plugins/wechat/cert/' . $config['cert_path'], // XXX: 绝对路径！！！！
+            'key_path' => CMF_ROOT . 'public/plugins/wechat/cert/' . $config['key_path'],      // XXX: 绝对路径！！！！
+            'notify_url' => $config['notify_url'],     // 你也可以在下单时单独设置来想覆盖它
+            'log' => [
+                'level' => 'debug',
+                'file' => CMF_ROOT . 'public/plugins/wechat/logs/wechat.log',
+            ],
+        ];
+        var_dump($web_config);
+        $app = Factory::payment($web_config);
+        $response = $app->handlePaidNotify(function ($message, $fail) {
+            $order_sn = $message['out_trade_no'];
+            $array = explode('_', $order_sn);
+            $type = $array[0];
+            switch ($type) {
+                case 'ACTIVITY':
+                    $order = ActivitySignModel::with('activity_info')->where('order_sn', $order_sn)->find();
+                    if (!$order || $order['status'] == 1) {
+                        return true;
+                    }
+                    if ($message['return_code'] === 'SUCCESS') {
+                        if ($message['result_code'] === 'SUCCESS') {
+                            $activity = $order['activity_info'];
+                            $wechat_user = WechatUserModel::get($order['user_id']);
+                            if ($activity['give_points'] > 0) {
+                                $log = new WechatUserPointsLogModel([
+                                    'user_id' => $order['user_id'],
+                                    'change_points' => $activity['give_points'],
+                                    'before_points' => $wechat_user['points'],
+                                    'after_points' => $activity['give_points'] + $wechat_user['points'],
+                                    'remark' => '报名' . $activity['title'] . '获得' . $activity['give_points'] . '积分'
+                                ]);
+                                $log->save();
+                                $wechat_user->points = ['inc', $activity['give_points']];
+                                $wechat_user->save();
+                            }
+                            $order->money = $message['total_fee'] / 100;
+                            $order->points = $activity['give_points'];
+                            $order->pay_time = time();
+                            $order->status = 1;
+                        } else {
+                            $order->status = 3;
+                        }
+                        $order->save();
+                        return true;
+                    } else {
+                        return $fail('通信失败，请稍后再通知我');
+                    }
+                    break;
+                default:
+                    return true;
+                    break;
+            }
+        });
+        return $response;
+//        $response->send(); // return $response;
     }
 
     public function oauth_callback()
@@ -60,13 +128,13 @@ class WechatController extends Controller
                     // 测试环境
                     'dev' => [
                         'driver' => 'single',
-                        'path' => __DIR__ . '/logs/wechat.log',
+                        'path' => CMF_ROOT . 'public/plugins/wechat/logs/wechat.log',
                         'level' => 'debug',
                     ],
                     // 生产环境
                     'prod' => [
                         'driver' => 'daily',
-                        'path' => __DIR__ . '/logs/wechat.log',
+                        'path' => CMF_ROOT . 'public/plugins/wechat/logs/wechat.log',
                         'level' => 'info',
                     ],
                 ],

@@ -114,57 +114,101 @@
 <body>
 <div id="app">
     <el-tabs type="border-card">
-        <el-tab-pane label="活动报名列表" v-loading="onDataLoading">
+        <el-tab-pane label="模板信息列表" v-loading="onDataLoading">
             <el-row>
                 <el-col :span="24">
                     <el-form :inline="true" :model="form" size="mini">
-                        <el-form-item label="日期:">
-                            <el-date-picker v-model="form.duration" type="daterange" value-format="yyyy-MM-dd"
-                                            :picker-options="durationOptions" range-separator="至"
-                                            start-placeholder="开始日期" end-placeholder="结束日期" clearable></el-date-picker>
-                        </el-form-item>
+
                         <el-form-item>
-                            <el-button type="primary" @click="getData()">查询</el-button>
-                            <el-button type="danger" @click="clearForm()">清空</el-button>
+                            <el-button type="primary" @click="update(null)">新增模板消息</el-button>
                         </el-form-item>
                     </el-form>
                 </el-col>
             </el-row>
             <el-table :data="tableData" style="width: 100%">
                 <el-table-column prop="id" label="ID" width="80"></el-table-column>
-                <el-table-column prop="avatar" label="用户头像">
+                <el-table-column prop="template_title" label="模板标题">
+                </el-table-column>
+                <el-table-column v-if="{$role_id}!=3" prop="company_info.name" label="公司名称">
+                </el-table-column>
+                <el-table-column prop="template_content" label="模板内容"></el-table-column>
+                <el-table-column prop="template_id" label="模板id"></el-table-column>
+                <el-table-column prop="status" label="是否启用">
                     <template slot-scope="scope">
-                        <img :src="scope.row.user_info.headimgurl" style="width: 100px;" alt="">
+                        <el-switch
+                                v-model="scope.row.status"
+                                active-color="#13ce66"
+                                :active-value="1"
+                                :inactive-value="0"
+                                @change="change_status('status',scope.row.status,scope.row.id)"
+                                inactive-color="#ff4949">
+                        </el-switch>
                     </template>
                 </el-table-column>
-                <el-table-column prop="user_info.nickname" label="用户昵称"></el-table-column>
-                <el-table-column prop="activity_info.title" label="活动标题"></el-table-column>
-                <el-table-column prop="cover_img" label="封面图片">
-                    <template slot-scope="scope">
-                        <img :src="scope.row.activity_info.cover_img" alt="" style="width: 100px;">
-                    </template>
-                </el-table-column>
-                <el-table-column prop="money" label="报名费">
-                </el-table-column>
-                <el-table-column prop="points" label="赠送积分"></el-table-column>
-                <el-table-column prop="order_sn" label="订单号" min-width="180"></el-table-column>
-                <el-table-column prop="pay_time" label="支付时间" min-width="120">
-                    <template slot-scope="scope">
-                        {{formatDate(scope.row.pay_time)}}
-                    </template>
-                </el-table-column>
-                <el-table-column prop="status" label="报名状态"></el-table-column>
-                <el-table-column prop="create_time" label="报名时间" min-width="120">
+                <el-table-column prop="create_time" label="添加时间" min-width="120">
                     <template slot-scope="scope">
                         {{formatDate(scope.row.create_time)}}
                     </template>
                 </el-table-column>
-
+                <el-table-column label="操作" fixed="right" width="180">
+                    <template slot-scope="scope">
+                        <el-button size="mini" type="text" @click="update(scope.row)">编辑</el-button>
+                    </template>
+                </el-table-column>
             </el-table>
             <el-pagination background layout="total,prev, pager, next" :total="totalNum" :page-size="10"
                            :current-page.sync="currentPage" @current-change="getData"></el-pagination>
         </el-tab-pane>
     </el-tabs>
+    <el-dialog :title="sourceForm.id == '' ? '新增模板消息' : '修改模板消息'" :visible.sync="dialogVisible" width="60%"
+               v-loading.fullscreen="dialogLoading">
+        <el-form :model="sourceForm" class="demo-form-inline" :rules="rules" ref="sourceForm"
+                 label-width="200px">
+            <el-form-item label="模板标题" prop="template_title">
+                <el-col :span="18">
+                    <el-input v-model="sourceForm.template_title" placeholder="模板标题"></el-input>
+                </el-col>
+            </el-form-item>
+            <el-form-item v-if="{$role_id}!=3" label="选择公司" prop="company_id">
+                <el-col :span="18">
+                    <el-select v-model="sourceForm.company_id" placeholder="选择公司">
+                        <el-option
+                                v-for="item in companyData"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
+                        </el-option>
+                    </el-select>
+                </el-col>
+            </el-form-item>
+            <el-form-item label="模板id" prop="template_id">
+                <el-col :span="18">
+                    <el-input v-model="sourceForm.template_id" placeholder="模板id"></el-input>
+                </el-col>
+            </el-form-item>
+            <el-form-item label="模板内容" prop="template_content">
+                <el-col :span="18">
+                    <el-input type="textarea" v-model="sourceForm.template_content" placeholder="模板内容"></el-input>
+                </el-col>
+            </el-form-item>
+            <el-form-item label="是否启用" prop="status">
+                <el-col :span="18">
+                    <el-switch
+                            v-model="sourceForm.status"
+                            active-color="#13ce66"
+                            inactive-color="#ff4949"
+                            :active-value="1"
+                            :inactive-value="0">
+                    </el-switch>
+                </el-col>
+            </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+            <el-button v-if="sourceForm.id === ''" type="primary" @click="submit('sourceForm')">新增</el-button>
+            <el-button v-else type="primary" @click="submit('sourceForm')">修改</el-button>
+        </span>
+    </el-dialog>
+
 </div>
 </body>
 <script>
@@ -176,6 +220,15 @@
                 companyData: [],
                 form: {
                     name: '',
+                },
+                sourceForm: {
+                    id: '',
+                    company_id: '',
+                    template_id: '',
+                    status: 0,
+                    template_title: '',
+                    template_content: '',
+
                 },
                 totalNum: 0,
                 currentPage: 1,
@@ -209,6 +262,12 @@
                     }]
                 },
                 dialogVisible: false,
+                rules: {
+                    template_title: [{required: true, message: '请输入模板标题', trigger: 'blur'}],
+                    company_id: [{required: true, message: '请选择公司', trigger: 'blur'}],
+                    template_id: [{required: true, message: '请输入模板id', trigger: 'blur'}],
+                    template_content: [{required: true, message: '请输入模板内容', trigger: 'blur'}],
+                },
                 headers: {'X-Requested-With': 'XMLHttpRequest'},
             }
         },
@@ -229,7 +288,7 @@
                 if (this.form.duration !== '') {
                     params.duration = this.form.duration;
                 }
-                axios.get("{:url('admin/activity/sign_list')}", {
+                axios.get("/plugin/wechat/admin_index/template_message", {
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest',
                     },
@@ -271,6 +330,74 @@
                 }).catch(function (error) {
                     _this.onDataLoading = false;
                     _this.$message.error(error.toString())
+                })
+            },
+            submit(form) {
+                let _this = this;
+                _this.$refs[form].validate((valid) => {
+                    if (valid) {
+                        axios.post("/plugin/wechat/admin_index/template_save", this.sourceForm, {
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest',
+                            }
+                        }).then(function (response) {
+                            _this.dialogLoading = false;
+                            if (response.data.code === 1) {
+                                if (_this.sourceForm.id === '') {
+                                    _this.$message.success('新增完成');
+                                } else {
+                                    _this.$message.success('修改成功');
+                                }
+                                _this.getData();
+                                _this.dialogVisible = false;
+                            } else {
+                                _this.$message.warning(response.data.msg);
+                            }
+                        }).catch(function (error) {
+                            _this.dialogLoading = false;
+                            _this.$message.error(error.toString())
+                        })
+                    } else {
+                        _this.dialogLoading = false;
+                        return false;
+                    }
+                });
+            },
+            update(data) {
+                let _this = this;
+                if (data) {
+                    console.log(data)
+                    _this.sourceForm = JSON.parse(JSON.stringify(data));
+                    console.log(_this.sourceForm)
+                } else {
+                    _this.sourceForm = {
+                        id: '',
+                        company_id: '',
+                        template_id: '',
+                        template_title: '',
+                        template_content: '',
+                        status: 0,
+                    }
+                }
+                _this.dialogVisible = true;
+                _this.dialogLoading = false;
+            },
+            change_status(field, value, id) {
+                let _this = this;
+                this.dialogLoading = true;
+                let params = {field: field, value: value, id: id};
+                axios.post("/plugin/wechat/admin_index/change_status", params, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    }
+                }).then(function (response) {
+                    _this.dialogLoading = false;
+                    if (response.data.code === 1) {
+                        _this.$message.success('修改完成');
+                        _this.getData(_this.currentPage);
+                    } else {
+                        _this.$message.warning(response.data.msg);
+                    }
                 })
             },
             formatDate(timestamp) {

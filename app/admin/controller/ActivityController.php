@@ -4,6 +4,7 @@
 namespace app\admin\controller;
 
 
+use app\admin\model\ActivitySignModel;
 use app\admin\model\ActivityModel;
 use app\admin\model\RoleUserModel;
 use app\admin\model\UserModel;
@@ -141,6 +142,29 @@ class ActivityController extends AdminBaseController
 
     public function sign_list()
     {
+        $admin_id = cmf_get_current_admin_id();
+        $role_id = RoleUserModel::where('user_id', $admin_id)->value('role_id');
+        $role_id = $role_id ? $role_id : 1;
+        $this->assign('role_id', $role_id);
+        if ($this->request->isAjax()) {
+            $data = $this->request->param();
+            $where = [];
+            if (isset($data['duration']) && $data['duration']) {
+                $where[] = ['create_time', 'between time', [$data['duration'][0] . ' 00:00:00', $data['duration'][1] . ' 23:59:59']];
+            }
+            $num = 10;
+            $page = isset($data['page']) && $data['page'] ? intval($data['page']) : 1;
+            $list = ActivitySignModel::with('activity_info,user_info')
+                ->where($where)
+                ->order('create_time desc')
+                ->paginate($num, false, ['page' => $page])
+                ->each(function ($item) {
+
+                    return $item;
+                });
+            $this->success('', '', $list);
+        }
+
         return $this->fetch();
     }
 }

@@ -2,9 +2,12 @@
 
 namespace plugins\wechat\controller;
 
+use app\admin\model\RoleUserModel;
+use app\admin\model\UserModel;
 use cmf\controller\PluginAdminBaseController;
 use EasyWeChat\Factory;
 use plugins\wechat\model\CacheModel;
+use plugins\wechat\model\TemplateMessageModel;
 use plugins\wechat\model\WechatMenusModel;
 use plugins\wechat\model\WechatUserModel;
 use think\Db;
@@ -80,6 +83,77 @@ class AdminIndexController extends WechatBaseController
 //        $user_model->save();
 //        var_dump($users);
         return $this->fetch('/user_list');
+    }
+
+    public function template_message()
+    {
+        $admin_id = cmf_get_current_admin_id();
+        $role_id = RoleUserModel::where('user_id', $admin_id)->value('role_id');
+        $role_id = $role_id ? $role_id : 1;
+        $this->assign('role_id', $role_id);
+        if ($this->request->isAjax()) {
+            $data = $this->request->param();
+            $page = isset($data['page']) && $data['page'] ? intval($data['page']) : 1;
+            $admin_id = cmf_get_current_admin_id();
+            $admin_info = UserModel::get($admin_id);
+            $where = [];
+            if ($admin_info['company_id']) {
+                $where[] = ['company_id', '=', $admin_info['company_id']];
+            }
+            $list = TemplateMessageModel::with('company_info')
+                ->where($where)->order('create_time desc')
+                ->paginate(10, false, ['page' => $page]);
+            $this->success('', '', $list);
+        }
+        return $this->fetch('/template_message');
+    }
+
+    public function template_save()
+    {
+        if ($this->request->isPost()) {
+            $data = $this->request->param();
+            if (isset($data['id']) && $data['id']) {
+                $model = TemplateMessageModel::get($data['id']);
+            } else {
+                $model = new TemplateMessageModel();
+            }
+            $admin_id = cmf_get_current_admin_id();
+            $admin_info = UserModel::get($admin_id);
+            if ($admin_info['company_id']) {
+                $model->company_id = $admin_info['company_id'];
+            } else {
+                $model->company_id = $data['company_id'];
+            }
+            $model->template_id = $data['template_id'];
+            $model->template_title = $data['template_title'];
+            $model->template_content = $data['template_content'];
+            $model->status = $data['status'];
+
+            $res = $model->save();
+            if ($res) {
+                $this->success('更新成功');
+            } else {
+                $this->error('更新失败');
+            }
+        }
+    }
+
+    public function change_status()
+    {
+        if ($this->request->isPost()) {
+            $data = $this->request->param();
+            $model = TemplateMessageModel::get($data['id']);
+            if ($model) {
+                $res = TemplateMessageModel::where(['id' => $data['id']])->update([$data['field'] => $data['value']]);
+                if ($res) {
+                    $this->success('更新成功');
+                } else {
+                    $this->error('更新失败');
+                }
+            } else {
+                $this->error('模板信息不存在或已删除');
+            }
+        }
     }
 
 }

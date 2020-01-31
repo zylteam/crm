@@ -9,6 +9,7 @@ use api\crm\model\UserModel;
 use api\crm\model\WechatUserModel;
 use app\admin\model\TempUserRelationModel;
 use cmf\controller\RestBaseController;
+use Overtrue\Socialite\User;
 use plugins\wechat\model\CacheModel;
 use plugins\wechat\model\WechatMenusModel;
 
@@ -42,7 +43,8 @@ class WechatController extends RestBaseController
         $zp = isset($data['zp']) && $data['zp'] ? $data['zp'] : 0;
         $url = 'http://crmhtml.test2.zhicaisoft.cn/views/addRecord.html?id=' . $id . '&zt=' . $zt . '&zp=' . $zp;
         $params['url'] = $url;
-        $params['company_id'] = $id;
+        $user_info = UserModel::get($id);
+        $params['company_id'] = $user_info['company_id'];
         $js = hook('get_jssdk', $params);
         $this->success('js', $js);
     }

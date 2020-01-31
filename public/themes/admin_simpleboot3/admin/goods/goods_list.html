@@ -152,32 +152,27 @@
                                   @change="change_status('sort',scope.row.sort,scope.row.id)"></el-input>
                     </template>
                 </el-table-column>
+                <el-table-column v-if="{$role_id} != 3" prop="company_info.name" label="公司名称"
+                ></el-table-column>
                 <el-table-column prop="goods_name" label="商品标题"></el-table-column>
                 <el-table-column prop="cover_img" label="商品图片">
                     <template slot-scope="scope">
                         <img :src="scope.row.goods_img[0]" alt="" style="width: 100px;">
                     </template>
                 </el-table-column>
-                <el-table-column prop="price" label="价格"></el-table-column>
+                <el-table-column prop="buy_type" label="购买模式">
+                    <template slot-scope="scope">
+                        {{ scope.row.buy_type == 0 ? '全现金' : scope.row.buy_type == 1 ? '全积分' : '现金+积分' }}
+                    </template>
+                </el-table-column>
+                <el-table-column prop="price" label="价格" min-width="150">
+                    <template slot-scope="scope">
+                        {{ scope.row.buy_type == 0 ? scope.row.price+'元' : scope.row.buy_type == 1 ?
+                        scope.row.points+'积分' : scope.row.price+'元+'+scope.row.points+'积分' }}
+                    </template>
+                </el-table-column>
                 <el-table-column prop="stock" label="库存"></el-table-column>
                 <el-table-column prop="gift_points" label="赠送积分"></el-table-column>
-                <el-table-column prop="is_points" label="是否支持积分">
-                    <template slot-scope="scope">
-                        <el-switch
-                                v-model="scope.row.is_points"
-                                active-color="#13ce66"
-                                :active-value="1"
-                                :inactive-value="0"
-                                @change="change_status('is_points',scope.row.is_points,scope.row.id)"
-                                inactive-color="#ff4949">
-                        </el-switch>
-                    </template>
-                </el-table-column>
-                <el-table-column prop="points" label="可使用积分">
-                    <template slot-scope="scope">
-                        {{ scope.row.is_points == 1 ? scope.row.points : '' }}
-                    </template>
-                </el-table-column>
                 <el-table-column prop="is_on_sale" label="是否上架">
                     <template slot-scope="scope">
                         <el-switch
@@ -252,9 +247,19 @@
                         </el-switch>
                     </el-col>
                 </el-form-item>
-                <el-form-item label="商品价格" prop="price">
+                <el-form-item label="购买模式" prop="buy_type">
+                    <el-radio-group v-model="goodsForm.buy_type">
+                        <el-radio v-for="type in buy_type" :label="type.id">{{type.name}}</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item v-if="goodsForm.buy_type == 0  || goodsForm.buy_type == 2" label="商品价格" prop="price">
                     <el-col :span="18">
                         <el-input v-model="goodsForm.price" placeholder="商品价格"></el-input>
+                    </el-col>
+                </el-form-item>
+                <el-form-item v-if="goodsForm.buy_type == 1 || goodsForm.buy_type == 2" label="可使用积分" prop="points">
+                    <el-col :span="18">
+                        <el-input v-model="goodsForm.points" placeholder="可使用积分"></el-input>
                     </el-col>
                 </el-form-item>
                 <el-form-item label="库存" prop="stock">
@@ -262,22 +267,7 @@
                         <el-input v-model="goodsForm.stock" type="number" placeholder="库存"></el-input>
                     </el-col>
                 </el-form-item>
-                <el-form-item label="是否支持积分" prop="">
-                    <el-col :span="18">
-                        <el-switch
-                                v-model="goodsForm.is_points"
-                                active-color="#13ce66"
-                                inactive-color="#ff4949"
-                                :active-value="1"
-                                :inactive-value="0">
-                        </el-switch>
-                    </el-col>
-                </el-form-item>
-                <el-form-item v-if="goodsForm.is_points == 1" label="可使用积分" prop="points">
-                    <el-col :span="18">
-                        <el-input v-model="goodsForm.points" placeholder="可使用积分"></el-input>
-                    </el-col>
-                </el-form-item>
+
                 <el-form-item label="赠送积分" prop="gift_points">
                     <el-col :span="18">
                         <el-input v-model="goodsForm.gift_points" type="number" placeholder="赠送积分"></el-input>
@@ -299,11 +289,6 @@
                               prop="stock"></el-input>
                     <el-input v-model="domain.price" style="width:200px" placeholder="价格"></el-input>
                     <el-button @click.prevent="remove_menu(domain)">删除</el-button>
-                </el-form-item>
-                <el-form-item label="赠送积分" prop="give_points">
-                    <el-col :span="18">
-                        <el-input v-model="goodsForm.give_points" placeholder="赠送积分"></el-input>
-                    </el-col>
                 </el-form-item>
                 <el-form-item label="商品详细" prop="goods_detail">
                     <el-col :span="18">
@@ -346,6 +331,11 @@
                     // UEditor 资源文件的存放路径，如果你使用的是 vue-cli 生成的项目，通常不需要设置该选项，vue-ueditor-wrap 会自动处理常见的情况，如果需要特殊配置，参考下方的常见问题2
                     UEDITOR_HOME_URL: '/static/UEditor/',
                 },
+                buy_type: [
+                    {id: 0, name: '全现金'},
+                    {id: 1, name: '全积分'},
+                    {id: 2, name: '现金+积分'}
+                ],
                 totalNum: 0,
                 currentPage: 1,
                 dialogLoading: false,
@@ -398,7 +388,7 @@
                     sign_time: [{required: true, message: '请选择前面时间', trigger: 'blur'}],
                     stock: [{required: true, message: '请输入库存', trigger: 'blur'}],
                     price: [{required: true, message: '请输入产品价格', trigger: 'blur'}],
-                    // goods_spec['stock']: [{required: true, message: '请输入限额报名数', trigger: 'blur'}],
+                    points: [{required: true, message: '请输入可使用积分', trigger: 'blur'}],
                 },
                 headers: {'X-Requested-With': 'XMLHttpRequest'},
             }
@@ -532,6 +522,7 @@
                         company_id: '',
                         goods_specs: [],
                         stock: '',
+                        buy_type: 0,
                     }
                 }
                 _this.dialogVisible = true;
@@ -569,15 +560,15 @@
                 });
             },
             add_menu() {
-                this.goodsForm.goods_spec.push({
+                this.goodsForm.goods_specs.push({
                     value: '',
                     key: Date.now()
                 });
             },
             remove_menu(item) {
-                var index = this.goodsForm.goods_spec.indexOf(item)
+                var index = this.goodsForm.goods_specs.indexOf(item)
                 if (index !== -1) {
-                    this.goodsForm.goods_spec.splice(index, 1)
+                    this.goodsForm.goods_specs.splice(index, 1)
                 }
             },
             delete_activity(id) {
@@ -618,6 +609,24 @@
                 }
                 return num;
             }
-        }
+        },
+        watch: {
+            'goodsForm.goods_specs': {
+                handler: function () {
+                    let goods_specs = this.goodsForm.goods_specs
+                    if (goods_specs.length > 0) {
+                        let stock = 0;
+                        goods_specs.forEach(function (value, index, array) {
+                            stock += parseInt(array[index].stock)
+                        })
+                        this.goodsForm.stock = stock
+                    }
+
+                    //do something
+                },
+                deep: true
+            }
+        },
+
     });
 </script>

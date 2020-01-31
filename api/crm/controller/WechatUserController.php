@@ -6,6 +6,7 @@ namespace api\crm\controller;
 
 use api\crm\model\WechatUserAddressModel;
 use api\crm\model\WechatUserModel;
+use app\admin\logic\HookLogic;
 use cmf\controller\RestBaseController;
 
 class WechatUserController extends RestBaseController
@@ -90,5 +91,18 @@ class WechatUserController extends RestBaseController
         $params['company_id'] = 1;
         $res = hook('wechat_web_pay_order', $params);
         $this->success('', $res);
+    }
+
+    public function refund_order()
+    {
+        $data = $this->request->param();
+
+        $param['order_sn'] = $data['order_sn'];
+        $param['total_money'] = $data['money'];
+        $param['refund_money'] = $data['money'];
+        $param['company_id'] = $data['id'];
+        $param['desc'] = '活动退款';
+        $res = hook('wechat_web_refund', $param);
+        $this->success('退款成功', $res);
     }
 }

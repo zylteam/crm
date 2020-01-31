@@ -154,3 +154,20 @@ function cmf_generate_wechat_user_token($userId, $deviceType)
     }
     return $token;
 }
+
+function send_message($data)
+{
+    $params['company_id'] = $data['company_id'];
+    $params['openid'] = $data['openid'];
+    $params['template_id'] = $data['template_id'];
+    $params['url'] = $data['url'];
+    $params['data'] = [
+        'first' => $data['first'],
+        'keyword1' => $data['keyword1'],
+        'keyword2' => $data['keyword2'],
+        'keyword3' => $data['keyword3'],
+        'keyword4' => date('Y-m-d H:i:s', time()),
+        'remark' => $data['remark']
+    ];
+    hook('send_template_message', $params);
+}
