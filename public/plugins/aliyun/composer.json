@@ -1,0 +1,6 @@
+{
+    "require": {
+        "alibabacloud/sdk": "^1.8",
+        "alibabacloud/client": "^1.5"
+    }
+}

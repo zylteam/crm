@@ -1,0 +1,1560 @@
+[2020-01-27T20:50:59.363504+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2edcb321ed9]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[72A9389B4C2E26AEFCE1B3C5259D026F]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 12:50:59 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[f7eI3KnKUznrTV5T]]></nonce_str>
+<sign><![CDATA[4AA977280B5CBC17287FDE2E45BD5E2B]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27205059340077c07b3335d01911230300]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T20:51:31.316199+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2edcd323ce5]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[60BEE30C098887A6F24D267AF774410E]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 12:51:31 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[4p0cvtOCrDzONq2p]]></nonce_str>
+<sign><![CDATA[A15EE678A7D32354068420CAA37E0570]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27205131287874c07b3335d01039919300]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T20:56:25.002537+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2eddf8a8668]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[E0D6CD3305E602AAEFF39C6E253C7264]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 12:56:24 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[DOqJ2ssxSnb61PA7]]></nonce_str>
+<sign><![CDATA[82A86753DE02890D77890C8160958970]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27205624949681c07b3335d01677431000]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:00:45.918372+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2edefdae989]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[FE0C11B291B0964DC4CFA90F580D0E75]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:00:45 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[DCsPq2V5Y4sHAavv]]></nonce_str>
+<sign><![CDATA[D2EB9A6C3BC127A7C41A41DB26C7D243]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27210045877402c07b3335d01526663100]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:12:31.080297+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee1bed4e52]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[1970B564A1BFD16DAE7A444D6311F06C]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:12:31 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[3G92uUBmtu18e2bG]]></nonce_str>
+<sign><![CDATA[C1B4630F57EE2422A99E43EFB9ACB48C]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27211231059742c07b3335d01620677300]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:12:37.231214+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee1c504662]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[C76156542385584F9953D52F52D64E7E]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:12:37 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[FsrUTAjeVTlaTosm]]></nonce_str>
+<sign><![CDATA[895310200F1F36055106F556E3DE190D]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27211237203839c07b3335d01488115900]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:13:21.511710+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee1f15a003]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[00D4F0411375D6021506CD4FDCD40B20]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:13:21 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[Qc9ewtnFBP1laT4b]]></nonce_str>
+<sign><![CDATA[66FA831E426C7C2A48CCC341B0B4C16A]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27211321484034c07b3335d01682942100]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:14:40.557330+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee24060cbf]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[A5E67687BA3B77A119B6059D2A31CE02]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:14:40 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[OQKgZJmr8DjP2e03]]></nonce_str>
+<sign><![CDATA[643DAC9CC55B92028E18EC1F8FCF320D]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27211440526144c07b3335d01810669000]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:14:40.794188+08:00] EasyWeChat.DEBUG: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=29_1SiBoW0gB9D988wXa1mfsd-BDPfxNrjiPmZMb4m-5LsR9Vi_7KPfDIfzlS_f9h1CT5xstuVIg47914RcCeiBPLQtVMjAjYUMI9b8Kt3TihucSlZDwvdOTi9Q05CQqRYFesrHweOOtiZ14txwOUPgAJAGMH&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Mon, 27 Jan 2020 13:14:40 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"kgt8ON7yVITDhtdwci0qefgQjm1e4VlPO1qTSkf4CIVIc6xxdgAAtSpXW8iMnRkv83MbMz-OetSWCfxqFglOEQ","expires_in":7200}
+--------
+NULL  
+[2020-01-27T21:15:42.833348+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee27ea92ca]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[D577E85651C0DED79ED22389330D7DD6]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:15:42 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[cSbhjI78734OHcd6]]></nonce_str>
+<sign><![CDATA[E454D4A06A0A0DD99E8C8F17817DCC43]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27211542809389c07b3335d01932792300]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:16:17.459760+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee2a14e43a]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[7EA3ECD850AEC0575A49923FE0BA0898]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:16:17 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[Idurucoz34lzoc76]]></nonce_str>
+<sign><![CDATA[FB2F1167E80EED83869EBD2D7ADAA18C]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27211617433361c07b3335d01959377500]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:16:41.919135+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee2b9b78f2]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[88E0F064DE446AE5ECEA4F8C46C3E087]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:16:41 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[LGRCm5QnwHTChG0g]]></nonce_str>
+<sign><![CDATA[BEE042E6AB836646E73D93CD4EF6EC9B]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27211641893030c07b3335d01703827900]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:17:12.766936+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee2d89908d]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[474A57DB607D7FE951F8B15F261FE4F0]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:17:12 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[qpOisWlQvHkHj0Of]]></nonce_str>
+<sign><![CDATA[3E94C7971D9783F4453FB7F7F4B098C8]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27211712747237c07b3335d01203375800]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:18:12.091410+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee313c5459]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[F1ED887F4332DE8A446CD615E6E31834]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:18:12 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[vdHLEvwuGXhZ41pu]]></nonce_str>
+<sign><![CDATA[9DFB50D3521E1EA64EEF2F3325BD2675]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27211812043921c07b3335d01345142700]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:21:03.809409+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee3bf71d30]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[7F8C551E2913A226D6EA6F225CD58188]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:21:03 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[1qT2BL0Jyxy7S8Ln]]></nonce_str>
+<sign><![CDATA[CBDFCA769959AC604C412086BA3701E9]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27212103760176c07b3335d01469148900]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:21:37.615927+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee3e17004f]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[CB29DD1CDF1276A7C3D2DE0C4CB5CE9D]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:21:37 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[VbxSOuFFdCEF8cfd]]></nonce_str>
+<sign><![CDATA[61150A7A8DED52C3128208A2A57B73C3]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27212137565781c07b3335d01931717500]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:22:43.181178+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee4230c907]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[3A5A22DC02283798D3F55F69F8016524]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:22:43 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[GRC5YUgzMD00as2T]]></nonce_str>
+<sign><![CDATA[2A90C251DB1A0AC12BE663C389EEF9D4]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27212243143899c07b3335d01887706300]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:24:53.549529+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee4a558fd8]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[83E6BC49339A66B10F5E2D5AD2F06865]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:24:53 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[Gt6gqtBIXepnHyzS]]></nonce_str>
+<sign><![CDATA[2CAB92725DD3A5094754407257554D5B]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27212453522702c07b3335d01843774200]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:25:13.038832+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee4b8c0b35]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[0E5E4C6333F7F9E14FC50A2335910F06]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:25:13 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[GIBZZBVrgujfpdDF]]></nonce_str>
+<sign><![CDATA[E06722E76608DD5CEC9458318AA90477]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27212512991822c07b3335d01197785400]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:28:11.061529+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee56adcef1]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[BE9DD7531030EA8F623D5233E0BD1571]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:28:11 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[XgCIXpdoPwJNLn1A]]></nonce_str>
+<sign><![CDATA[149463844BFDEF9E2EA07ACEEC5F99B8]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27212811030857c07b3335d01589239600]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:28:35.446451+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee5834a579]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[61F7CA37F02C4AED681698E69965153C]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:28:35 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[tQ1VVBb8cJW9ODYb]]></nonce_str>
+<sign><![CDATA[EFF1D87DEAA0FD6726BD26D371C31A32]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27212835415561c07b3335d01257462400]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:29:19.542347+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee5af42527]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[46B97F82CC70501E17692EAC90020B99]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:29:19 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[SxdfUczVurypSvT5]]></nonce_str>
+<sign><![CDATA[D6E5A4D29B8E47E5B76C3F37F8CB6CE2]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27212919486680c07b3335d01464073100]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:30:16.514868+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee5e838bd5]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[6856E4985C2EAA5887D42E6CE43503B4]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:30:16 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[zhMUDUiRzd2eEehC]]></nonce_str>
+<sign><![CDATA[E6AFF5FD6A3FB793E30647CE7E6F2B9D]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27213016469314c07b3335d01168977100]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:32:56.505247+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee68835e8c]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[233C4FCA18A1EB49562EE09F22A2B06D]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:32:56 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[dgkaCmwd7PRBPNyW]]></nonce_str>
+<sign><![CDATA[58F5AC9B150D51E963D5420B0C80F931]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27213256464872c07b3335d01266506700]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:33:10.587566+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee69672764]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[7F556F0857E7C9B0EEFFC594FD5C5681]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:33:10 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[RZQdS6huaOS355z6]]></nonce_str>
+<sign><![CDATA[A6B17A2DD9048F95A512C17011B8C2F4]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27213310556733c07b3335d01404279800]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:33:22.505154+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee6a23663f]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[8C2D8363AC9CD54BC91DAD17E1784CF8]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:33:22 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[XjFAIwSAay9AyzCh]]></nonce_str>
+<sign><![CDATA[31405F1238FB506C411E8A73EE1A03A4]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27213322464624c07b3335d01640568700]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:34:53.879259+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee6fdad442]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[3415C928F51F84FE9A9BDFAE344B63C2]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:34:53 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[GJ2fLNzKJiI6CnTW]]></nonce_str>
+<sign><![CDATA[F976277C6086C806221ACD8B71974C5C]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27213453845721c07b3335d01321244000]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:35:07.841811+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee70b81084]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[C36EEFB8526F00CBE4B5236F790F583D]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:35:07 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[lH5vU3Xn3fztRoGa]]></nonce_str>
+<sign><![CDATA[E256E45F6A6834FF568898430FFBD4BD]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27213507782596c07b3335d01642000000]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:35:24.698529+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee71c84c8a]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[3CF3CABAC478599B956A240BD41F9F21]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:35:24 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[fGdtozlfrDCSHf5y]]></nonce_str>
+<sign><![CDATA[3C2E2165F0FE592D9B538CAFAA4B5BE8]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27213524663277c07b3335d01266291900]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:35:38.897552+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee72abfb17]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[90235ECAF5862DC91DD17480315D589D]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:35:38 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[4kAZl5uMnlbjtrGu]]></nonce_str>
+<sign><![CDATA[29F11DDE155185101566DCEF528A9073]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27213538875486c07b3335d01546025700]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:38:27.883760+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee7d39a43c]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[308B2C1E002618D575F7BD6FE8791FDE]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:38:27 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[JxJieMfcNwd3qouG]]></nonce_str>
+<sign><![CDATA[AEB0D704190160FBF60585991D4B4BD0]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27213827836619c07b3335d01944141800]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:38:46.658439+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee7e651b83]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[DE6B4276CE44412D418A9F395E2DD056]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:38:46 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[vnrYCRWemQe0d9d2]]></nonce_str>
+<sign><![CDATA[002AC8D647BFE419ACE4181BF181D9DD]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27213846601568c07b3335d01628851000]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:39:59.531281+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee82f624f2]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[C9CE069E0418B8E2E0660F913C5602CE]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:39:59 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[CIoM0zJbwC46KdZp]]></nonce_str>
+<sign><![CDATA[AA11BF4A472526ECEECB1204A922CECC]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27213959507436c07b3335d01206570500]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:40:35.247823+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee852e6e23]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[BDD96E88D6ACCB99F739EA318346932C]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:40:35 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[vElsp0NIgWny1acg]]></nonce_str>
+<sign><![CDATA[B1416D5C8A7AA406F062D72B260CCC0A]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27214035204668c07b3335d01491705900]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:40:46.657118+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee85e80176]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[F9F7965A8EBE3ADE550EEF62F86E8D0C]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:40:46 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[2d5O2usXAh7nc069]]></nonce_str>
+<sign><![CDATA[65D4193C0318087279F9DEE4F6D8F40B]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27214046633710c07b3335d01166906700]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:41:07.387881+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee8731d2cd]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[30702182E355D6B6C38ABD95901C0F65]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:41:07 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[bnNR2XcUYHeeah4A]]></nonce_str>
+<sign><![CDATA[754E5F1ADF94CCE70FF02CD9B1224BD8]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27214107334798c07b3335d01073866400]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:42:02.267620+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee8aa0263f]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[C91F6E241D4FB619B15460BCB00EF9F9]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:42:02 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[f20Wm6IgGtGzCWbK]]></nonce_str>
+<sign><![CDATA[4C287C38E7CC24B336FE2AE91CADF6F7]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27214202232579c07b3335d01353348800]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:43:06.941709+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee8eac4590]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[32769B2939DE91656B254E506C9CBEF0]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:43:06 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[4vh01pGJd9WgADrs]]></nonce_str>
+<sign><![CDATA[C52E9768ABD05E4CE11DC1485407223E]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27214306913786c07b3335d01667236200]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:45:53.703711+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee99187357]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[7A0BD9E0762C64C62621B5698744B6CE]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:45:53 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[6CloAWOOuvUJTdYk]]></nonce_str>
+<sign><![CDATA[C44A1486069615B9B39292A196EBCB24]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27214553661306c07b3335d01437668900]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:46:15.013489+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2ee9a6d5f04]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[D9B810125E06989F577A06B2C8A8B5A1]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:46:14 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[ZueXvRHnaBJTKUDA]]></nonce_str>
+<sign><![CDATA[BA9CECBCDF36B42996B4C74B1464FFE0]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27214614985049c07b3335d01600739000]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:49:10.783902+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 576
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2eea56a117c]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs1]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[537A4CB3605692B32ABB56FB05BF9761]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:49:10 GMT
+Content-Type: text/plain
+Content-Length: 440
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[oYoLQAjpan06YXyt]]></nonce_str>
+<sign><![CDATA[961A959EABB651FF93099771A71EA8FC]]></sign>
+<result_code><![CDATA[FAIL]]></result_code>
+<err_code><![CDATA[PARAM_ERROR]]></err_code>
+<err_code_des><![CDATA[无效的openid]]></err_code_des>
+</xml>
+--------
+NULL  
+[2020-01-27T21:49:24.252336+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2eea641db31]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[5283196D2266B6D16B0C6060F77CA3FA]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:49:24 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[JVD5pxLZqv9sSHyx]]></nonce_str>
+<sign><![CDATA[E11C918EC01667578CD9AAFCE8CB3B19]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27214924230895c07b3335d01264975800]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:50:16.335148+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2eea982e01b]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[E631F4D9ADF51ABFCF8588510062F17F]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:50:16 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[7VBg0jY7ptffo9qi]]></nonce_str>
+<sign><![CDATA[FBE2EEA28169A38D3BFA0ACCB2A753F5]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27215016315966c07b3335d01058749100]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:52:24.586587+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2eeb1847f07]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[CBC0BF216851242698F47061C2657A58]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:52:24 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[ujazJnVbq1gxJsHe]]></nonce_str>
+<sign><![CDATA[4F9A7DA5A78420978CDE0B825EDE87EE]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27215224539448c07b3335d01960687300]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:52:30.203278+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2eeb1de3d83]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[7586D68E550B54A83D825752599B97CE]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:52:30 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[vZT8dpgxyOT6ikqk]]></nonce_str>
+<sign><![CDATA[D44E492752238EC99CA7176EE38ABCF8]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27215230156566c07b3335d01433041600]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-27T21:53:10.496373+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2eeb4640654]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[78C83A634C29ACAA73D7597D699C8815]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 27 Jan 2020 13:53:10 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[WRL8VvBuAr20uKc0]]></nonce_str>
+<sign><![CDATA[449A1A2EE49A84D71AC6565E804BD0FA]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx27215310452716c07b3335d01861362200]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-28T14:49:20.737053+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 575
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2fd97061e01]]></nonce_str><body><![CDATA[腾讯充值中心-QQ会员充值]]></body><out_trade_no>20150806125346</out_trade_no><total_fee>88</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[F9752EFF2BA66BF5EABFB779CFE28677]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 28 Jan 2020 06:49:20 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[PontQVTf58ImJQl8]]></nonce_str>
+<sign><![CDATA[3FB15E6258AAFA925AEE7411E1343785]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx28144920681817c07b3335d01511642700]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-28T14:49:20.960612+08:00] EasyWeChat.DEBUG: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=29_xAP5UFZLDitXPeUBgm3zn5SLpvGXIlUFxyWlWnYOgRV2JDPt6T0XgY0N5KJqqTQVNqrTvzhg3_46OyvdWdRNUinlO21Bxnj-ZDCvQud5gYloNU83gBOqhVmjLwQm6uVdtjUgJlECEuM7MI7YBUYeABATMQ&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Tue, 28 Jan 2020 06:49:20 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"kgt8ON7yVITDhtdwci0qefgQjm1e4VlPO1qTSkf4CIUIwTa7YDHgQdtiGAfYnobG9dKhgrk13hCudpWofQ2QjA","expires_in":7200}
+--------
+NULL  
+[2020-01-28T14:50:31.571979+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 586
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2fd9b75ef25]]></nonce_str><body><![CDATA[报名测试活动]]></body><out_trade_no><![CDATA[ACTIVITY_2020012855535798]]></out_trade_no><total_fee>10000</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[A2F94E6CD877FA6E101281285186B617]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 28 Jan 2020 06:50:31 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[cUjGOi1VsXk4UgQN]]></nonce_str>
+<sign><![CDATA[C661386511DA05468F1AFD31836BD179]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx281450315446388c90f7afe31916082500]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-28T14:51:21.314966+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 586
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2fd9e8e3474]]></nonce_str><body><![CDATA[报名测试活动]]></body><out_trade_no><![CDATA[ACTIVITY_2020012856100971]]></out_trade_no><total_fee>10000</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[28399806F39526B3328B906ADC0C53AB]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 28 Jan 2020 06:51:21 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[jgMTHv1rbokZjzgq]]></nonce_str>
+<sign><![CDATA[8A5F5A41A4922BD42B3321F9BEB8A28E]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx28145121243018da3d65405d1338881400]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-28T14:56:41.988532+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 586
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2fdb29a345b]]></nonce_str><body><![CDATA[报名测试活动]]></body><out_trade_no><![CDATA[ACTIVITY_2020012857571015]]></out_trade_no><total_fee>10000</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[DE007A89BB354769F2D2F3D221631C8B]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 28 Jan 2020 06:56:41 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[74UscfFMd6tSmonI]]></nonce_str>
+<sign><![CDATA[3448E3428D428CB6D1FC419121A3C342]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx281456419316440efdd3da9c1900629400]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-28T14:57:03.515673+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 586
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2fdb3f3d10b]]></nonce_str><body><![CDATA[报名测试活动]]></body><out_trade_no><![CDATA[ACTIVITY_2020012810251565]]></out_trade_no><total_fee>10000</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[117.136.46.81]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[415964ABBB07D149CCCAA45367FF980A]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 28 Jan 2020 06:57:03 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[fAe5v5yUgJqafgx7]]></nonce_str>
+<sign><![CDATA[C12745655FADFD7F1DD77BABC0B3166A]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx28145703463795ca60cd67a71626934500]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-28T14:57:46.601774+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 582
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2fdb6a71f46]]></nonce_str><body><![CDATA[报名测试活动]]></body><out_trade_no><![CDATA[ACTIVITY_2020012897541005]]></out_trade_no><total_fee>1</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[117.136.46.81]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[180E37C58B50129B16DB834CEAE96765]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 28 Jan 2020 06:57:46 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[VIalt1LrhAfwXwYz]]></nonce_str>
+<sign><![CDATA[7662DD86B324F8A5C0BE918BC962AA05]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx28145746581112834e4389841363076100]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-28T15:09:40.094806+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 582
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2fde33e17dc]]></nonce_str><body><![CDATA[报名测试活动]]></body><out_trade_no><![CDATA[ACTIVITY_2020012851100999]]></out_trade_no><total_fee>1</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[117.136.46.81]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[2EA8B595B0517458A04E8EAA7076802A]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 28 Jan 2020 07:09:40 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[2kBoDuMm9LIlT3j5]]></nonce_str>
+<sign><![CDATA[00597567825647535C8995F913A4EA07]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx2815094006323022bf0da9111215000200]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-28T15:18:25.549067+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 582
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e2fe04156d02]]></nonce_str><body><![CDATA[报名测试活动]]></body><out_trade_no><![CDATA[ACTIVITY_2020012849534997]]></out_trade_no><total_fee>1</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[117.136.46.81]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[C30EE8617061331ACA548DB52499BAEA]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 28 Jan 2020 07:18:25 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[hw8Se1EdKoAS4V9i]]></nonce_str>
+<sign><![CDATA[C8BD0C58B365E5C23CD537D392092194]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx28151825516595cab449ab061986311700]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-28T17:48:08.992980+08:00] EasyWeChat.INFO: >>>>>>>>
+POST /pay/unifiedorder HTTP/1.1
+Content-Length: 582
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+Host: api.mch.weixin.qq.com
+
+<xml><mch_id>1573935211</mch_id><nonce_str><![CDATA[5e300358bfe55]]></nonce_str><body><![CDATA[报名测试活动]]></body><out_trade_no><![CDATA[ACTIVITY_2020012856989848]]></out_trade_no><total_fee>1</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><openid><![CDATA[oRdnWwhhnQiNotHmpYCV7_S_KhLs]]></openid><spbill_create_ip><![CDATA[112.21.81.202]]></spbill_create_ip><appid><![CDATA[wx2c423450dcde2932]]></appid><notify_url><![CDATA[http://crm.test2.zhicaisoft.cn/plugin/wechat/wechat/notify?id=1]]></notify_url><sign><![CDATA[C98F5F9CDDAD2FE47E32F2D7FFF55FE2]]></sign></xml>
+<<<<<<<<
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 28 Jan 2020 09:48:08 GMT
+Content-Type: text/plain
+Content-Length: 456
+Connection: keep-alive
+Keep-Alive: timeout=8
+
+<xml><return_code><![CDATA[SUCCESS]]></return_code>
+<return_msg><![CDATA[OK]]></return_msg>
+<appid><![CDATA[wx2c423450dcde2932]]></appid>
+<mch_id><![CDATA[1573935211]]></mch_id>
+<nonce_str><![CDATA[CWBDKZaSuy9lZdYA]]></nonce_str>
+<sign><![CDATA[3BDC942DB483A51420A94A9EF954B1BC]]></sign>
+<result_code><![CDATA[SUCCESS]]></result_code>
+<prepay_id><![CDATA[wx281748089588267a10376f381701350100]]></prepay_id>
+<trade_type><![CDATA[JSAPI]]></trade_type>
+</xml>
+--------
+NULL  
+[2020-01-28T17:48:09.224209+08:00] EasyWeChat.DEBUG: >>>>>>>>
+GET /cgi-bin/ticket/getticket?access_token=29_kmza7U8Js7q3DX49GSkOkoy38P4ao0bO2DgWwX5xMGNokPJTqVG9uEw5yzQmTe0LUqpLGCPZmoNT4ePjPi1s1Mgj4-g-a2lFcwG6afphSzhPOz2EPWMZP7mgbjO7bce5SSwK5cVUn9kh1PD-ZEFhAJANST&type=jsapi HTTP/1.1
+Host: api.weixin.qq.com
+User-Agent: GuzzleHttp/6.4.1 curl/7.64.1 PHP/7.2.18
+
+
+<<<<<<<<
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; encoding=utf-8
+Date: Tue, 28 Jan 2020 09:48:09 GMT
+Content-Length: 143
+
+{"errcode":0,"errmsg":"ok","ticket":"kgt8ON7yVITDhtdwci0qefgQjm1e4VlPO1qTSkf4CIXj1yywJQA58PoTfJpP2cKMZcVjawQwzm38XRgdHGyCjA","expires_in":7200}
+--------
+NULL  
