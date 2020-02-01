@@ -131,6 +131,139 @@ class WechatPlugin extends Plugin
         return $js;
     }
 
+    public function getCouponColor($param)
+    {
+        $company_id = $param['company_id'];
+        $user_id = isset($param['user_id']) && $param['user_id'] ? $param['user_id'] : 0;
+        $return_url = isset($param['return_url']) && $param['return_url'] ? $param['return_url'] : 0;
+        $setting = WechatSettingModel::where('company_id', $company_id)->find();
+        $config = unserialize($setting['setting']);
+        $web_config = [
+            'app_id' => $config['appid'],
+            'secret' => $config['secret'],
+            'response_type' => 'array',
+            'oauth' => [
+                'scopes' => ['snsapi_userinfo'],
+                'callback' => '/api/wechat/oauth_callback/?id=' . $company_id . '&user_id=' . $user_id . '&return_url=' . $return_url,
+
+            ],
+        ];
+        $app = Factory::officialAccount($web_config);
+        $card = $app->card;
+        $cardType = 'GROUPON';
+
+        $card = $app->card;
+//        $cardType = 'GROUPON';
+//
+//        $attributes = [
+//            'base_info' => [
+//                'logo_url' => 'http://mmbiz.qpic.cn/sz_mmbiz_jpg/ca2X3RtRt0Ysibydg1IRURQOxnHlmlKblZmSibH4EyVZAo7nmzzlE4GnlPUphFeNNQuiayrrEiaL69QRiaItOCI30ZQ/0',
+//                'brand_name' => '方睿电器',
+//                'code_type' => 'CODE_TYPE_TEXT',
+//                'title' => '测试优惠券',
+//                'color' => 'Color010',
+//                'notice' => '卡券使用提醒',
+//                'description' => '卡券描述',
+//                "sku" => [
+//                    "quantity" => 500000
+//                ],
+//                "date_info" => [
+//                    "type" => "DATE_TYPE_FIX_TIME_RANGE",
+//                    "begin_timestamp" => 1580054400,
+//                    "end_timestamp" => 1581955200
+//                ],
+//            ],
+//            'deal_detail' => '详细说明'
+//        ];
+//
+//        $result = $card->create($cardType, $attributes);
+        $cards = [
+            'action_name' => 'QR_CARD',
+            'expire_seconds' => 1800,
+            'action_info' => [
+                'card' => [
+                    'card_id' => 'pRdnWwu4BXpDbMUG5MZqCKDj_0cs',
+                    'is_unique_code' => false,
+                    'outer_id' => 1,
+                ],
+            ],
+        ];
+
+        $result = $card->createQrCode($cards);
+//        $url = $card->getQrCodeUrl($result['ticket']);
+        //查询卡券信息
+//        $cardInfo = $card->get('pRdnWwu4BXpDbMUG5MZqCKDj_0cs');
+        return $result;
+    }
+
+    public function createCoupon($param)
+    {
+        $company_id = $param['company_id'];
+        $user_id = isset($param['user_id']) && $param['user_id'] ? $param['user_id'] : 0;
+        $return_url = isset($param['return_url']) && $param['return_url'] ? $param['return_url'] : 0;
+        $setting = WechatSettingModel::where('company_id', $company_id)->find();
+        $config = unserialize($setting['setting']);
+        $web_config = [
+            'app_id' => $config['appid'],
+            'secret' => $config['secret'],
+            'response_type' => 'array',
+            'oauth' => [
+                'scopes' => ['snsapi_userinfo'],
+                'callback' => '/api/wechat/oauth_callback/?id=' . $company_id . '&user_id=' . $user_id . '&return_url=' . $return_url,
+
+            ],
+        ];
+        $app = Factory::officialAccount($web_config);
+        $card = $app->card;
+        $cardType = 'GROUPON';
+
+        $attributes = [
+            'base_info' => [
+                'logo_url' => 'http://mmbiz.qpic.cn/sz_mmbiz_jpg/ca2X3RtRt0Ysibydg1IRURQOxnHlmlKblZmSibH4EyVZAo7nmzzlE4GnlPUphFeNNQuiayrrEiaL69QRiaItOCI30ZQ/0',
+                'brand_name' => '方睿电器',
+                'code_type' => 'CODE_TYPE_TEXT',
+                'title' => '测试优惠券',
+                'color' => 'Color010',
+                'notice' => '卡券使用提醒',
+                'description' => '卡券描述',
+                "sku" => [
+                    "quantity" => 500000
+                ],
+                "date_info" => [
+                    "type" => "DATE_TYPE_FIX_TIME_RANGE",
+                    "begin_timestamp" => 1580054400,
+                    "end_timestamp" => 1581955200
+                ],
+            ],
+        ];
+
+//        $result = $card->create($cardType, $attributes);
+        return $web_config;
+    }
+
+    public function createMemberCard($param)
+    {
+        $company_id = $param['company_id'];
+        $user_id = isset($param['user_id']) && $param['user_id'] ? $param['user_id'] : 0;
+        $return_url = isset($param['return_url']) && $param['return_url'] ? $param['return_url'] : 0;
+        $setting = WechatSettingModel::where('company_id', $company_id)->find();
+        $config = unserialize($setting['setting']);
+        $web_config = [
+            'app_id' => $config['appid'],
+            'secret' => $config['secret'],
+            'response_type' => 'array',
+            'oauth' => [
+                'scopes' => ['snsapi_userinfo'],
+                'callback' => '/api/wechat/oauth_callback/?id=' . $company_id . '&user_id=' . $user_id . '&return_url=' . $return_url,
+
+            ],
+        ];
+        $app = Factory::officialAccount($web_config);
+        $card = $app->card;
+
+    }
+
+
     public function wechatWebPayOrder($param)
     {
         $company_id = $param['company_id'];
@@ -165,6 +298,7 @@ class WechatPlugin extends Plugin
         $pay_config['js'] = $js;
         return $pay_config;
     }
+
 
     public function wechatWebRefund($param)
     {

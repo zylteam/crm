@@ -117,7 +117,7 @@
 <body>
 <div id="app" style="height: 800px;">
     <el-tabs type="border-card">
-        <el-tab-pane label="活动管理" v-loading="onDataLoading">
+        <el-tab-pane label="直播间列表" v-loading="onDataLoading">
             <el-row>
                 <el-col :span="24">
                     <el-form :inline="true" :model="form" size="mini">
@@ -129,7 +129,7 @@
                         <el-form-item>
                             <el-button type="primary" @click="getData()">查询</el-button>
                             <el-button type="danger" @click="clearForm()">清空</el-button>
-                            <el-button type="primary" @click="update(null)">新增活动</el-button>
+                            <el-button type="primary" @click="update(null)">新增直播间</el-button>
                         </el-form-item>
                     </el-form>
                 </el-col>
@@ -192,12 +192,6 @@
                         <el-input v-model="sourceFrom.title" placeholder="活动标题"></el-input>
                     </el-col>
                 </el-form-item>
-                <el-form-item label="副标题" prop="sub_title">
-                    <el-col :span="18">
-                        <el-input v-model="sourceFrom.sub_title" placeholder="副标题"></el-input>
-                    </el-col>
-                </el-form-item>
-
                 <el-form-item label="封面图片" prop="cover_pic">
                     <el-col :span="18">
                         <el-upload
@@ -250,11 +244,6 @@
                         <el-date-picker v-model="sourceFrom.sign_time" type="daterange" value-format="yyyy-MM-dd"
                                         :picker-options="durationOptions" range-separator="至"
                                         start-placeholder="开始日期" end-placeholder="结束日期" clearable></el-date-picker>
-                    </el-col>
-                </el-form-item>
-                <el-form-item label="活动地址" prop="address">
-                    <el-col :span="18">
-                        <el-input v-model="sourceFrom.address" placeholder="活动地址"></el-input>
                     </el-col>
                 </el-form-item>
                 <el-form-item label="是否火热" prop="is_hot">
@@ -374,8 +363,8 @@
                     company_id: [{required: true, message: '请选择公司', trigger: 'blur'}],
                     activity_time: [{required: true, message: '请选择活动时间', trigger: 'blur'}],
                     sign_time: [{required: true, message: '请选择前面时间', trigger: 'blur'}],
-                    sub_title: [{required: true, message: '请输入副标题', trigger: 'blur'}],
-                    address: [{required: true, message: '请输入活动地址', trigger: 'blur'}],
+                    // money: [{required: true, message: '请输入报名价格', trigger: 'blur'}],
+                    // quota_num: [{required: true, message: '请输入限额报名数', trigger: 'blur'}],
                 },
                 headers: {'X-Requested-With': 'XMLHttpRequest'},
             }

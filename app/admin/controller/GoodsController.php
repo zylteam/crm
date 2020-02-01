@@ -23,6 +23,9 @@ class GoodsController extends AdminBaseController
             $where = [];
             $num = 10;
             $where[] = ['is_delete', '=', 0];
+            if (isset($data['is_on_sale']) && $data['is_on_sale']) {
+                $where[] = ['is_on_sale', '=', $data['is_on_sale']];
+            }
             $admin_id = cmf_get_current_admin_id();
             $admin_info = UserModel::get($admin_id);
             if ($admin_info['company_id']) {

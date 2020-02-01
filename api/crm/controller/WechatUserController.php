@@ -66,7 +66,7 @@ class WechatUserController extends RestBaseController
         $user_id = $this->getWechatUserId();
         $data = $this->request->param();
         $id = isset($data['id']) && $data['id'] ? $data['id'] : 0;
-        $info = WechatUserAddressModel::get($id);
+        $info = WechatUserAddressModel::where('user_id', $user_id)->get($id);
         if ($info) {
             $res = $info->delete();
             if ($res) {
@@ -84,6 +84,14 @@ class WechatUserController extends RestBaseController
         $user_id = $this->getWechatUserId();
         $user_info = WechatUserModel::get($user_id);
         $this->success('获取微信用户信息', $user_info);
+    }
+
+    public function get_user_address()
+    {
+        $user_id = $this->getWechatUserId();
+        $address_list = WechatUserAddressModel::where('user_id', $user_id)
+            ->order('is_default desc,create_time desc')->all();
+        $this->success('获取用户地址列表', $address_list);
     }
 
     public function pay_order()

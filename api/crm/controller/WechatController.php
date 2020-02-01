@@ -28,10 +28,12 @@ class WechatController extends RestBaseController
     public function test()
     {
 //        $info = ActivitySignModel::with(['user_info'])->withJoin('activity')->get(1);
-        $info = UserModel::get(1);
-        $data['title'] = 'test';
-        $model = new ActivityModel();
-        $res = $model->addActivity($data);
+//        $info = UserModel::get(1);
+//        $data['title'] = 'test';
+//        $model = new ActivityModel();
+//        $res = $model->addActivity($data);
+        $data['company_id'] = 1;
+        $info = hook('get_coupon_color', $data);
         $this->success('', $info);
     }
 

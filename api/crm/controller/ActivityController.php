@@ -79,6 +79,14 @@ class ActivityController extends RestBaseController
         } else {
             $info['is_sign'] = false;
         }
+        $today = time();
+        if ($today < $info['begin_time']) {
+            $info['status'] = '还未开始';
+        } else if ($today > $info['end_time']) {
+            $info['status'] = '已结束';
+        } else {
+            $info['status'] = '进行中';
+        }
         $info['content'] = preg_replace_callback('/<[img|IMG].*?src=[\'| \"](?![http|https])(.*?(?:[\.gif|\.jpg]))[\'|\"].*?[\/]?>/', function ($r) {
             $str = $this->request->domain() . $r[1];
             return str_replace($r[1], $str, $r[0]);

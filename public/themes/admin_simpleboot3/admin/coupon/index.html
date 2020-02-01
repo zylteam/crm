@@ -105,6 +105,17 @@
         border-color: #409EFF;
     }
 
+    .demo-color-box {
+        position: relative;
+        border-radius: 4px;
+        padding: 20px;
+        width: 100px;
+        height: 100px;
+        box-sizing: border-box;
+        color: #fff;
+        font-size: 12px;
+    }
+
     .logo-uploader-icon {
         font-size: 28px;
         color: #8c939d;
@@ -117,7 +128,7 @@
 <body>
 <div id="app" style="height: 800px;">
     <el-tabs type="border-card">
-        <el-tab-pane label="活动管理" v-loading="onDataLoading">
+        <el-tab-pane label="优惠券列表" v-loading="onDataLoading">
             <el-row>
                 <el-col :span="24">
                     <el-form :inline="true" :model="form" size="mini">
@@ -129,7 +140,7 @@
                         <el-form-item>
                             <el-button type="primary" @click="getData()">查询</el-button>
                             <el-button type="danger" @click="clearForm()">清空</el-button>
-                            <el-button type="primary" @click="update(null)">新增活动</el-button>
+                            <el-button type="primary" @click="update(null)">新增优惠券</el-button>
                         </el-form-item>
                     </el-form>
                 </el-col>
@@ -183,49 +194,10 @@
             <el-pagination background layout="total,prev, pager, next" :total="totalNum" :page-size="10"
                            :current-page.sync="currentPage" @current-change="getData"></el-pagination>
         </el-tab-pane>
-        <el-dialog :title="sourceFrom.id == '' ? '新增活动' : '修改活动'" :visible.sync="dialogVisible" width="60%"
+        <el-dialog :title="sourceFrom.id == '' ? '新增优惠券' : '修改优惠券'" :visible.sync="dialogVisible" width="60%"
                    v-loading.fullscreen="dialogLoading">
             <el-form :model="sourceFrom" class="demo-form-inline" :rules="rules" ref="sourceFrom"
                      label-width="200px">
-                <el-form-item label="活动标题" prop="title">
-                    <el-col :span="18">
-                        <el-input v-model="sourceFrom.title" placeholder="活动标题"></el-input>
-                    </el-col>
-                </el-form-item>
-                <el-form-item label="副标题" prop="sub_title">
-                    <el-col :span="18">
-                        <el-input v-model="sourceFrom.sub_title" placeholder="副标题"></el-input>
-                    </el-col>
-                </el-form-item>
-
-                <el-form-item label="封面图片" prop="cover_pic">
-                    <el-col :span="18">
-                        <el-upload
-                                class="avatar-uploader"
-                                action="{:url('api/crm/upload')}"
-                                :show-file-list="false"
-                                :on-success="handleAvatarSuccess"
-                                :before-upload="beforeAvatarUpload">
-                            <img v-if="sourceFrom.cover_img" :src="sourceFrom.cover_img" class="avatar"/>
-                            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                        </el-upload>
-                    </el-col>
-                </el-form-item>
-                <el-form-item label="轮播图片" prop="imgs">
-                    <el-col :span="24">
-                        <div v-for="photo in sourceFrom.imgs" class="photos">
-                            <img :src="photo"/>
-                            <div class="photos-options">
-                                <el-button icon="el-icon-delete" type="text" @click="handleRemove(photo)"></el-button>
-                            </div>
-                        </div>
-                        <el-upload class="photos-uploader logo-uploader" action="{:url('api/crm/upload')}"
-                                   :headers="headers"
-                                   :show-file-list="false" :on-success="handleintroimgSuccess" multiple>
-                            <i class="el-icon-plus logo-uploader-icon"></i>
-                        </el-upload>
-                    </el-col>
-                </el-form-item>
                 <el-form-item v-if="{$role_id}!=3" label="选择公司" prop="company_id">
                     <el-col :span="18">
                         <el-select v-model="sourceFrom.company_id" placeholder="选择公司">
@@ -238,29 +210,66 @@
                         </el-select>
                     </el-col>
                 </el-form-item>
-                <el-form-item label="活动时间" prop="activity_time">
+                <el-form-item label="优惠券标题" prop="name">
+                    <el-col :span="18">
+                        <el-input v-model="sourceFrom.title" placeholder="优惠券标题"></el-input>
+                    </el-col>
+                </el-form-item>
+                <el-form-item label="卡券背景色" prop="color">
+                    <el-col :span="18">
+                        <el-input v-model="sourceFrom.color"></el-input>
+                        <el-tag
+                                v-for="item in colors"
+                                :key="item.name"
+                                :hit="false"
+                                :color="item.value"
+                                style="margin: 0 5px;"
+                                @click="select_color(item)"
+                                effect="dark">
+                            {{ item.name }}
+                        </el-tag>
+                    </el-col>
+                </el-form-item>
+                <el-form-item label="优惠券类别" prop="coupon_type">
+                    <el-col :span="18">
+                        <el-select v-model="sourceFrom.coupon_type" placeholder="选择优惠券类别">
+                            <el-option
+                                    v-for="item in coupon_type_list"
+                                    :key="item.id"
+                                    :label="item.name"
+                                    :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </el-col>
+                </el-form-item>
+                <el-form-item label="优惠券种类" prop="type">
+                    <el-col :span="18">
+                        <el-select v-model="sourceFrom.type" placeholder="选择优惠券种类">
+                            <el-option
+                                    v-for="item in type_list"
+                                    :key="item.id"
+                                    :label="item.name"
+                                    :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </el-col>
+                </el-form-item>
+                <el-form-item label="使用范围" prop="use_condition">
+                    <el-col :span="18">
+                        <el-button type="primary" @click="select_goods">选择可使用商品</el-button>
+                    </el-col>
+                </el-form-item>
+                <el-form-item label="有效期" prop="activity_time">
                     <el-col :span="18">
                         <el-date-picker v-model="sourceFrom.activity_time" type="daterange" value-format="yyyy-MM-dd"
                                         :picker-options="durationOptions" range-separator="至"
                                         start-placeholder="开始日期" end-placeholder="结束日期" clearable></el-date-picker>
                     </el-col>
                 </el-form-item>
-                <el-form-item label="报名时间" prop="sign_time">
-                    <el-col :span="18">
-                        <el-date-picker v-model="sourceFrom.sign_time" type="daterange" value-format="yyyy-MM-dd"
-                                        :picker-options="durationOptions" range-separator="至"
-                                        start-placeholder="开始日期" end-placeholder="结束日期" clearable></el-date-picker>
-                    </el-col>
-                </el-form-item>
-                <el-form-item label="活动地址" prop="address">
-                    <el-col :span="18">
-                        <el-input v-model="sourceFrom.address" placeholder="活动地址"></el-input>
-                    </el-col>
-                </el-form-item>
-                <el-form-item label="是否火热" prop="is_hot">
+                <el-form-item label="是否可以领取" prop="is_receive">
                     <el-col :span="18">
                         <el-switch
-                                v-model="sourceFrom.is_hot"
+                                v-model="sourceFrom.is_receive"
                                 active-color="#13ce66"
                                 inactive-color="#ff4949"
                                 :active-value="1"
@@ -268,11 +277,14 @@
                         </el-switch>
                     </el-col>
                 </el-form-item>
-                <el-form-item label="收费金额" prop="money">
+                <el-form-item label="限领张数" prop="limit_count">
                     <el-col :span="18">
-                        <el-tooltip content="0不收费 大于0收费金额" placement="bottom" effect="light">
-                            <el-input v-model="sourceFrom.money" placeholder="收费金额"></el-input>
-                        </el-tooltip>
+                        <el-input v-model="sourceFrom.limit_count" placeholder="限领张数"></el-input>
+                    </el-col>
+                </el-form-item>
+                <el-form-item label="总数量" prop="limit_count">
+                    <el-col :span="18">
+                        <el-input v-model="sourceFrom.limit_count" placeholder="限领张数"></el-input>
                     </el-col>
                 </el-form-item>
                 <el-form-item label="赠送积分" prop="give_points">
@@ -282,24 +294,31 @@
                         </el-tooltip>
                     </el-col>
                 </el-form-item>
-                <el-form-item label="限额数" prop="quota_num">
+                <el-form-item label="优惠券说明" prop="content">
                     <el-col :span="18">
-                        <el-tooltip content="0不限额 大于0限额数" placement="bottom" effect="light">
-                            <el-input v-model="sourceFrom.quota_num" placeholder="限额数"></el-input>
-                        </el-tooltip>
+                        <el-input v-model="sourceFrom.content" placeholder="优惠券说明"></el-input>
                     </el-col>
                 </el-form-item>
-                <el-form-item label="活动详细" prop="content">
-                    <el-col :span="18">
-                        <vue-ueditor-wrap v-model="sourceFrom.content" :config="myConfig"
-                                          style="line-height: 0px;"></vue-ueditor-wrap>
-                    </el-col>
-                </el-form-item>
+
             </el-form>
             <span slot="footer" class="dialog-footer">
             <el-button v-if="sourceFrom.id === ''" type="primary" @click="submit('sourceFrom')">新增</el-button>
             <el-button v-else type="primary" @click="submit('sourceFrom')">修改</el-button>
         </span>
+        </el-dialog>
+        <el-dialog title="选择商品" :visible.sync="dialogGoodsVisible" width="60%"
+                   v-loading.fullscreen="dialogLoading">
+            <el-table :data="goodsData" style="width: 100%">
+                <el-table-column prop="id" label="ID" width="80"></el-table-column>
+                <el-table-column prop="goods_name" label="商品标题"></el-table-column>
+                <el-table-column prop="cover_img" label="商品图片">
+                    <template slot-scope="scope">
+                        <img :src="scope.row.goods_img[0]" alt="" style="width: 100px;">
+                    </template>
+                </el-table-column>
+            </el-table>
+            <el-pagination background layout="total,prev, pager, next" :total="goodsNum" :page-size="10"
+                           :current-page.sync="currentGoodsPage" @current-change="getData"></el-pagination>
         </el-dialog>
     </el-tabs>
 </div>
@@ -312,9 +331,75 @@
             return {
                 tableData: [],
                 companyData: [],
+                goodsData: [],
+                goodsNum: 0,
+                currentGoodsPage: 1,
+                dialogGoodsVisible: false,
                 form: {
                     name: '',
                 },
+                colors: [
+                    {
+                        "name": "Color010",
+                        "value": "#63b359"
+                    },
+                    {
+                        "name": "Color020",
+                        "value": "#2c9f67"
+                    },
+                    {
+                        "name": "Color030",
+                        "value": "#509fc9"
+                    },
+                    {
+                        "name": "Color040",
+                        "value": "#5885cf"
+                    },
+                    {
+                        "name": "Color050",
+                        "value": "#9062c0"
+                    },
+                    {
+                        "name": "Color060",
+                        "value": "#d09a45"
+                    },
+                    {
+                        "name": "Color070",
+                        "value": "#e4b138"
+                    },
+                    {
+                        "name": "Color080",
+                        "value": "#ee903c"
+                    },
+                    {
+                        "name": "Color081",
+                        "value": "#f08500"
+                    },
+                    {
+                        "name": "Color082",
+                        "value": "#a9d92d"
+                    },
+                    {
+                        "name": "Color090",
+                        "value": "#dd6549"
+                    },
+                    {
+                        "name": "Color100",
+                        "value": "#cc463d"
+                    },
+                    {
+                        "name": "Color101",
+                        "value": "#cf3e36"
+                    },
+                    {
+                        "name": "Color102",
+                        "value": "#5E6671"
+                    },
+                    {
+                        "name": "Color103",
+                        "value": "#026842"
+                    }
+                ],
                 myConfig: {
                     // 编辑器不自动被内容撑高
                     autoHeightEnabled: false,
@@ -369,26 +454,72 @@
                     imgs: [],
                 },
                 dialogVisible: false,
+                coupon_type_list: [
+                    {id: 0, name: '折扣券'},
+                    {id: 1, name: '满减券'},
+                    {id: 2, name: '兑换券'}
+                ],
+                type_list: [
+                    {id: 0, name: '普通优惠券'},
+                    {id: 1, name: '直播优惠券'},
+                ],
                 rules: {
-                    title: [{required: true, message: '请输入活动标题', trigger: 'blur'}],
+                    name: [{required: true, message: '请输入优惠券标题', trigger: 'blur'}],
                     company_id: [{required: true, message: '请选择公司', trigger: 'blur'}],
-                    activity_time: [{required: true, message: '请选择活动时间', trigger: 'blur'}],
+                    color: [{required: true, message: '请选择卡券背景颜色', trigger: 'blur'}],
                     sign_time: [{required: true, message: '请选择前面时间', trigger: 'blur'}],
-                    sub_title: [{required: true, message: '请输入副标题', trigger: 'blur'}],
-                    address: [{required: true, message: '请输入活动地址', trigger: 'blur'}],
+                    // money: [{required: true, message: '请输入报名价格', trigger: 'blur'}],
+                    // quota_num: [{required: true, message: '请输入限额报名数', trigger: 'blur'}],
                 },
                 headers: {'X-Requested-With': 'XMLHttpRequest'},
             }
         },
         created() {
             this.getCompanyData();
-            this.getData()
+            this.getData();
+            this.init_goods(1);
         },
         methods: {
             clearForm() {
                 this.form = {
                     name: '',
                 }
+            },
+            init_goods(page) {
+                let _this = this;
+                let params = {page: page, is_on_sale: 1};
+                this.onDataLoading = true;
+                if (this.form.duration !== '') {
+                    params.duration = this.form.duration;
+                }
+                axios.get("{:url('admin/goods/goods_list')}", {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                    params: params
+                }).then(function (response) {
+                    console.log(response.data.data);
+                    _this.onDataLoading = false;
+                    if (response.data.code === 1) {
+                        _this.goodsData = response.data.data.data;
+                        _this.goodsNum = response.data.data.total;
+                        console.log(_this.goodsNum)
+                    } else {
+                        _this.$message({
+                            message: response.data.msg,
+                            type: 'warning'
+                        });
+                    }
+                }).catch(function (error) {
+                    _this.onDataLoading = false;
+                    _this.$message.error(error.toString())
+                })
+            },
+            select_goods() {
+                this.dialogGoodsVisible = true;
+            },
+            select_color(name) {
+                this.sourceFrom.color = name.name;
             },
             getData(page = 1) {
                 let _this = this;
@@ -501,6 +632,7 @@
                         sign_time: '',
                         give_points: 0,
                         imgs: [],
+                        color: '',
                         cover_img: '',
                         quota_num: 0,
                     }

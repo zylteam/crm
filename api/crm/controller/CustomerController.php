@@ -504,6 +504,7 @@ class CustomerController extends RestBaseController
                 ]);
                 $connect_log->save();
                 $customer_info->store_id = $manager_info['store_id'];
+                $customer_info->last_check_time = time();
                 $customer_info->parent_id = $manager_id;
                 $res = $customer_info->save();
                 if ($res) {

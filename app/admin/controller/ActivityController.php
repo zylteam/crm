@@ -77,6 +77,8 @@ class ActivityController extends AdminBaseController
             if (isset($data['id']) && $data['id']) {
                 $model = ActivityModel::get($data['id']);
                 $model->title = $data['title'];
+                $model->sub_title = $data['sub_title'];
+                $model->address = $data['address'];
                 $model->content = $data['content'];
                 $model->money = $data['money'];
                 $model->give_points = $data['give_points'];

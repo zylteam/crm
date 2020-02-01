@@ -56,7 +56,19 @@
             <el-row>
                 <el-form :model="sourceFrom" class="demo-form-inline" :rules="rules" ref="sourceFrom"
                          label-width="200px">
-                    <el-form-item label="AccessKeyID" prop="appid">
+                    <el-form-item v-if="{$role_id}!=3" label="选择公司" prop="company_id">
+                        <el-col :span="18">
+                            <el-select v-model="sourceFrom.company_id" placeholder="选择公司">
+                                <el-option
+                                        v-for="item in companyData"
+                                        :key="item.id"
+                                        :label="item.name"
+                                        :value="item.id">
+                                </el-option>
+                            </el-select>
+                        </el-col>
+                    </el-form-item>
+                    <el-form-item label="AccessKeyID" prop="AccessKeyID">
                         <el-col :span="18">
                             <el-input v-model="sourceFrom.AccessKeyID" placeholder="AccessKeyID"></el-input>
                         </el-col>
@@ -71,17 +83,17 @@
                             <el-input v-model="sourceFrom.pull_key" placeholder="播流主key"></el-input>
                         </el-col>
                     </el-form-item>
-                    <el-form-item label="推流主key">
+                    <el-form-item label="推流主key" prop="push_key">
                         <el-col :span="18">
                             <el-input v-model="sourceFrom.push_key" placeholder="推流主key"></el-input>
                         </el-col>
                     </el-form-item>
-                    <el-form-item label="播流地址">
+                    <el-form-item label="播流地址" prop="pull_address">
                         <el-col :span="18">
                             <el-input v-model="sourceFrom.pull_address" placeholder="播流地址"></el-input>
                         </el-col>
                     </el-form-item>
-                    <el-form-item label="推流地址">
+                    <el-form-item label="推流地址" prop="push_address">
                         <el-col :span="18">
                             <el-input v-model="sourceFrom.push_address" placeholder="推流地址"></el-input>
                         </el-col>
@@ -115,6 +127,7 @@
             let self = this;
             return {
                 tableData: [],
+                companyData: [],
                 form: {
                     keyword: '',
                 },
@@ -132,6 +145,15 @@
                     label: 'name'
                 },
                 onDataLoading: false,
+                rules: {
+                    company_id: [{required: true, message: '请选择公司', trigger: 'blur'}],
+                    AccessKeyID: [{required: true, message: '请输入AccessKeyID', trigger: 'blur'}],
+                    AccessKeySecret: [{required: true, message: '请输入AccessKeySecret', trigger: 'blur'}],
+                    pull_key: [{required: true, message: '请输入播流key', trigger: 'blur'}],
+                    push_key: [{required: true, message: '请输入推流key', trigger: 'blur'}],
+                    pull_address: [{required: true, message: '请输入播流地址', trigger: 'blur'}],
+                    push_address: [{required: true, message: '请输入推流地址', trigger: 'blur'}],
+                },
                 headers: {'X-Requested-With': 'XMLHttpRequest'},
 
             };
@@ -139,12 +161,34 @@
         },
         created() {
             this.getData()
+            this.getCompanyData()
         },
         methods: {
             clearForm() {
                 this.form = {
                     name: '',
                 }
+            },
+            getCompanyData() {
+                let _this = this;
+                axios.get("{:url('admin/company/get_company_list')}", {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                }).then(function (response) {
+                    _this.onDataLoading = false;
+                    if (response.data.code === 1) {
+                        _this.companyData = response.data.data;
+                    } else {
+                        _this.$message({
+                            message: response.data.msg,
+                            type: 'warning'
+                        });
+                    }
+                }).catch(function (error) {
+                    _this.onDataLoading = false;
+                    _this.$message.error(error.toString())
+                })
             },
             update(data) {
                 let _this = this;
@@ -165,7 +209,7 @@
                 let _this = this;
                 _this.$refs[form].validate((valid) => {
                     if (valid) {
-                        axios.post("{:url('admin/wechat/update_setting')}", this.sourceFrom, {
+                        axios.post("{:url('admin/live/updateSetting')}", this.sourceFrom, {
                             headers: {
                                 'X-Requested-With': 'XMLHttpRequest',
                             }
@@ -202,7 +246,7 @@
                     params.keyword = this.form.keyword;
                 }
                 console.log(params);
-                axios.get("{:url('admin/wechat/setting')}", {
+                axios.get("{:url('admin/live/setting')}", {
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest',
                     },
@@ -211,9 +255,8 @@
                     console.log(response.data.data);
                     _this.onDataLoading = false;
                     if (response.data.code === 1) {
-                        if (response.data.data.content) {
-                            _this.sourceFrom = response.data.data.content;
-                            _this.sourceFrom.id = response.data.data.id
+                        if (response.data.data) {
+                            _this.sourceFrom = response.data.data;
                         } else {
                             _this.sourceFrom = {};
                         }

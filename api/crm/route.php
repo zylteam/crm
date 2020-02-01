@@ -90,16 +90,21 @@ Route::group('wechat', function () {
     Route::post('add_cart', 'crm/Goods/add_cart');
     Route::get('get_user_cart', 'crm/Goods/get_user_cart');
     Route::post('activity_sign', 'crm/Activity/activity_sign');//get_my_activity
+    //新增地址 set_user_default_address get_user_address
+    Route::post('add_user_address', 'crm/WechatUser/add_user_address');
+    Route::post('set_user_default_address', 'crm/WechatUser/set_user_default_address');
+    Route::post('delete_user_address','crm/WechatUser/delete_user_address');
+    Route::post('get_user_address','crm/WechatUser/get_user_address');
 });
 //pay_order
 //活动入口
 Route::get('activity/get_activity_list', 'crm/Activity/get_activity_list');
 Route::get('activity/get_activity_detail', 'crm/Activity/get_activity_detail');
 
-
 //商品
 Route::get('goods/get_goods_list', 'crm/Goods/get_goods_list');
 Route::get('goods/get_goods_by_id', 'crm/Goods/get_goods_by_id');
 //广告
 Route::get('adv/get_adv', 'crm/Adv/get_adv');
+
 
