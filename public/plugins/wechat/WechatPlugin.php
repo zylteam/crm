@@ -177,23 +177,59 @@ class WechatPlugin extends Plugin
 //        ];
 //
 //        $result = $card->create($cardType, $attributes);
-        $cards = [
-            'action_name' => 'QR_CARD',
-            'expire_seconds' => 1800,
-            'action_info' => [
-                'card' => [
-                    'card_id' => 'pRdnWwu4BXpDbMUG5MZqCKDj_0cs',
-                    'is_unique_code' => false,
-                    'outer_id' => 1,
-                ],
-            ],
-        ];
-
-        $result = $card->createQrCode($cards);
+//        $cards = [
+//            'action_name' => 'QR_CARD',
+//            'expire_seconds' => 1800,
+//            'action_info' => [
+//                'card' => [
+//                    'card_id' => 'pRdnWwjhlEBXZ1NouwVShEURR0sw',
+//                    'is_unique_code' => false,
+//                    'outer_id' => 1,
+//                ],
+//            ],
+//        ];
+//
+//        $result = $card->createQrCode($cards);
 //        $url = $card->getQrCodeUrl($result['ticket']);
-        //查询卡券信息
-//        $cardInfo = $card->get('pRdnWwu4BXpDbMUG5MZqCKDj_0cs');
+//        //查询卡券信息
+        $result = $card->get('pRdnWwrIhs5Y40_05ZPexYGMwzmI');
         return $result;
+    }
+
+    public function getUserMemberCard($param)
+    {
+        $company_id = $param['company_id'];
+
+        $setting = WechatSettingModel::where('company_id', $company_id)->find();
+        $config = unserialize($setting['setting']);
+        $web_config = [
+            'app_id' => $config['appid'],
+            'secret' => $config['secret'],
+            'response_type' => 'array',
+
+        ];
+        $app = Factory::officialAccount($web_config);
+        $card = $app->card;
+        $res = $card->member_card->getUser($param['openid'], $param['code']);
+        return $res;
+    }
+
+    public function deleteCoupon($param)
+    {
+        $company_id = $param['company_id'];
+
+        $setting = WechatSettingModel::where('company_id', $company_id)->find();
+        $config = unserialize($setting['setting']);
+        $web_config = [
+            'app_id' => $config['appid'],
+            'secret' => $config['secret'],
+            'response_type' => 'array',
+
+        ];
+        $app = Factory::officialAccount($web_config);
+        $card = $app->card;
+        $res = $card->delete($param['card_id']);
+        return $res;
     }
 
     public function createCoupon($param)
@@ -241,26 +277,118 @@ class WechatPlugin extends Plugin
         return $web_config;
     }
 
-    public function createMemberCard($param)
+    /**
+     * 上传临时素材
+     * @param $param
+     * @return array|\EasyWeChat\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidArgumentException
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function uploadMaterial($param)
     {
         $company_id = $param['company_id'];
-        $user_id = isset($param['user_id']) && $param['user_id'] ? $param['user_id'] : 0;
-        $return_url = isset($param['return_url']) && $param['return_url'] ? $param['return_url'] : 0;
+
         $setting = WechatSettingModel::where('company_id', $company_id)->find();
         $config = unserialize($setting['setting']);
         $web_config = [
             'app_id' => $config['appid'],
             'secret' => $config['secret'],
             'response_type' => 'array',
-            'oauth' => [
-                'scopes' => ['snsapi_userinfo'],
-                'callback' => '/api/wechat/oauth_callback/?id=' . $company_id . '&user_id=' . $user_id . '&return_url=' . $return_url,
 
-            ],
+        ];
+        $app = Factory::officialAccount($web_config);
+        $res = '';
+        switch ($param['type']) {
+            case 'img':
+                $res = $app->material->uploadImage($param['path']);
+                break;
+            case 'voice';
+                $res = $app->material->uploadVoice($param['path']);
+                break;
+            case 'video':
+                $res = $app->material->uploadVideo($param['path']);
+                break;
+            case 'thumb':
+                $res = $app->material->uploadThumb($param['path']);
+                break;
+        }
+        return $res;
+    }
+
+    public function createMemberCard($param)
+    {
+        $company_id = $param['company_id'];
+
+        $setting = WechatSettingModel::where('company_id', $company_id)->find();
+        $config = unserialize($setting['setting']);
+        $web_config = [
+            'app_id' => $config['appid'],
+            'secret' => $config['secret'],
+            'response_type' => 'array',
+
         ];
         $app = Factory::officialAccount($web_config);
         $card = $app->card;
+        $cardType = 'member_card';
+        $attributes = [
+            "background_pic_url" => $param['background_pic_url'],
+            'prerogative' => $param['prerogative'],
+            'auto_activate' => $param['auto_activate'] == 1 ? true : false,
+            'supply_bonus' => $param['supply_bonus'] == 1 ? true : false,
+            'wx_activate' => $param['wx_activate'] == 1 ? true : false,
+            'supply_balance' => $param['supply_balance'] == 1 ? true : false,
+            'base_info' => [
+                'logo_url' => $param['logo_url'],
+                'brand_name' => $param['brand_name'],
+                'code_type' => $param['code_type'],
+                'title' => $param['title'],
+                'color' => $param['color'],
+                'notice' => $param['notice'],
+                'description' => $param['description'],
+                "sku" => [
+                    "quantity" => $param['quantity']
+                ],
+                'service_phone' => $param['service_phone'],
 
+            ],
+        ];
+        if ($param['wx_activate'] == 0) {
+            $attributes['activate_url'] = $param['activate_url'];
+        }
+        if ($param['supply_bonus'] == 0) {
+            $attributes['bonus_url'] = $param['bonus_url'];
+        }
+        if ($param['supply_balance'] == 0) {
+            $attributes['balance_url'] = $param['balance_url'];
+        }
+        $date_info = [];
+        switch ($param['date_info_type']) {
+            case 'DATE_TYPE_FIX_TIME_RANGE':
+                $date_info['type'] = 'DATE_TYPE_PERMANENT';
+                $date_info['begin_timestamp'] = $param['begin_timestamp'];
+                $date_info['end_timestamp'] = $param['end_timestamp'];
+                break;
+            case 'DATE_TYPE_FIX_TERM':
+                $date_info['type'] = 'DATE_TYPE_FIX_TERM';
+                $date_info['fixed_term'] = $param['fixed_term'];
+                $date_info['fixed_begin_term'] = $param['fixed_begin _term'];
+                break;
+            default:
+                $date_info['type'] = 'DATE_TYPE_PERMANENT';
+                break;
+        }
+        $attributes['base_info']['date_info'] = $date_info;
+        if (isset($param['card_id']) && $param['card_id']) {
+            $res = $card->update($param['card_id'], $cardType, $attributes);
+        } else {
+            $res = $card->create($cardType, $attributes);
+        }
+
+        return $res;
     }
 
 
@@ -291,7 +419,7 @@ class WechatPlugin extends Plugin
             'trade_type' => 'JSAPI', // 请对应换成你的支付方式对应的值类型
             'openid' => $param['openid'],
         ]);
-        $url = 'http://crmhtml.test2.zhicaisoft.cn/test.html?id=1&openid=oRdnWwhhnQiNotHmpYCV7_S_KhLs';
+        $url = $param['url'];
         $app->jssdk->setUrl($url);
         $js = $app->jssdk->buildConfig(array('chooseWXpay'), $debug = false, $beta = true, $json = false);
         $pay_config = $jssdk->bridgeConfig($result['prepay_id'], false);
